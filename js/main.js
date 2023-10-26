@@ -23,6 +23,7 @@ function fcAgregarAlCarrito() {
                 case "torta block":
                     precio = tortas[0].precio;
                     unidades = parseInt(prompt("Ingrese cuántas unidades desea agregar."));
+                    totalUnidades += unidades;
                         if (unidades > tortas[0].stock){
                             alert("No contamos con suficiente stock de ese producto.");
                         } else if (unidades <= 0){
@@ -39,6 +40,7 @@ function fcAgregarAlCarrito() {
                 case "torta cadbury":
                     precio = tortas[1].precio;
                     unidades = parseInt(prompt("Ingrese cuántas unidades desea agregar."));
+                    totalUnidades += unidades;
                         if (unidades > tortas[1].stock){
                             alert("No contamos con suficiente stock de ese producto.");
                         } else if (unidades <= 0){
@@ -55,6 +57,7 @@ function fcAgregarAlCarrito() {
                 case "chocotorta":
                     precio = tortas[2].precio;
                     unidades = parseInt(prompt("Ingrese cuántas unidades desea agregar."));
+                    totalUnidades += unidades;
                         if (unidades > tortas[2].stock){
                             alert("No contamos con suficiente stock de ese producto.");
                         } else if (unidades <= 0){
@@ -71,6 +74,7 @@ function fcAgregarAlCarrito() {
                 case "cheesecake":
                     precio = tortas[3].precio;
                     unidades = parseInt(prompt("Ingrese cuántas unidades desea agregar."));
+                    totalUnidades += unidades;
                         if (unidades > tortas[3].stock){
                             alert("No contamos con suficiente stock de ese producto.");
                         } else if (unidades <= 0){
@@ -87,6 +91,7 @@ function fcAgregarAlCarrito() {
                 case "torta alimonada":
                     precio = tortas[4].precio;
                     unidades = parseInt(prompt("Ingrese cuántas unidades desea agregar."));
+                    totalUnidades += unidades;
                         if (unidades > tortas[4].stock){
                             alert("No contamos con suficiente stock de ese producto.");
                         } else if (unidades <= 0){
@@ -103,6 +108,7 @@ function fcAgregarAlCarrito() {
                 case "torta snickers":
                     precio = tortas[5].precio;
                     unidades = parseInt(prompt("Ingrese cuántas unidades desea agregar."));
+                    totalUnidades += unidades;
                         if (unidades > tortas[5].stock){
                             alert("No contamos con suficiente stock de ese producto.");
                         } else if (unidades <= 0){
@@ -150,7 +156,7 @@ function comprar() {
                         console.log(carritoFinal.unidades + " unidades de " + carritoFinal.producto + " a $" + carritoFinal.precio * carritoFinal.unidades);
                     });
                     const total = carrito.reduce((acc,el) => acc + el.precio * el.unidades,0);
-                    console.log("El total de su compra es de $" + total + ".");
+                    console.log("El total de su compra es de: $" + total);
                 } else {
                     alert("Su carrito está vacío. Agregue productos para poder comprar.");
                 }

@@ -1,0 +1,253 @@
+.text__products{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap:10px;
+    padding: 40px 40px;
+    width: 100%;
+    background-color: #c5afb2db;
+    border-bottom: 2px solid #c5afb2db;
+}
+
+.text__products h1{
+    font-size: 50px;
+    color: #fff;
+    margin: 0 0 5px 0;
+    font-family: 'League Spartan';
+}
+
+.text__products p{
+    font-size: 23px;
+    max-width: 70%;
+    color: #fff;
+}
+
+.text__products i{
+    font-size: 50px;
+    color: #fff;
+}
+
+.hr__products{
+    width: 80px;
+    height: 2px;
+    color: #fff;
+    background-color: #fff;
+    opacity: 1;
+    border: none;
+}
+
+.img__products{
+    max-width: 100%;
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 10px 0 0 0;
+    transition: all .42s ease;
+}
+
+.img__products:hover{
+    transform: scale(1.1);
+    transition: all .42s ease;
+}
+
+.container__products{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    margin: 0 auto;
+    padding: 75px 80px;
+    background: #fff;
+}
+
+.products{
+    margin: 0 35px;
+    border-radius: 10px;
+    width: 80%;
+    flex: 350px;
+    overflow: hidden;
+    border: 1px solid $primarioOscuro;
+}
+
+.products:hover{
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.20);
+}
+
+.info__products{
+    padding: 15px 30px;
+    background: #fff;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-top: -10px;
+    line-height: 1.5;
+    gap: 20px;
+}
+
+.info__products h2{
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.price{
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.btn__product{
+    padding: 20px 15px;
+    color: #fff;
+    background-color: #C78283;
+    border: 2px solid #C78283;
+    font-size: 15px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all .42s ease;
+}
+
+.btn__product:hover{
+    color: #C78283;
+    background-color: #fff;
+    transition: all .42s ease;
+}
+
+.products article{
+    overflow: hidden;
+}
+
+/*TORTAS/PASTISSERIE/BRUNCH/NOVEDADES*/
+@media screen and (min-width: 240px){
+    .text__products h1{
+        margin-top: 5px;
+    }
+
+    .text__products p{
+        font-size: 20px;
+    }
+
+    .text__products i{
+        font-size: 40px;
+        margin-bottom: 20px;
+    }
+
+    .img__products{
+        height: 220px;
+    }
+
+    .container__products{
+        padding: 60px 0px;
+    }
+
+    .info__products{
+        padding: 20px 15px;
+    }   
+
+    .info__products h2{
+        font-size: 20px;
+    }
+
+    .price{
+        font-size: 15px;
+    }
+
+    .btn__product{
+        padding: 15px 0px;
+        font-size: 13px;
+    }
+}
+
+@media screen and (min-width: 300px){
+    .img__products{
+        height: 280px;
+    }
+}
+
+@media screen and (min-width: 400px){
+    .img__products{
+        height: 350px;
+    }
+}
+
+@media screen and (min-width: 500px){
+    .img__products{
+        height: 450px;
+    }
+
+    .info__products h2{
+        font-size: 30px;
+    }
+
+    .price{
+        font-size: 25px;
+    }
+
+    .btn__product{
+        padding: 20px 0px;
+        font-size: 18px;
+    }
+}
+
+@media screen and (min-width: 700px){
+    .text__products h1{
+        font-size: 50px;
+        margin-top: 5px;
+    }
+    
+    .text__products p{
+        font-size: 23px;
+    }
+    
+    .text__products i{
+        font-size: 50px;
+    }
+    
+    .img__products{
+        height: 550px;
+    }
+
+    .info__products{
+        padding: 20px 15px;
+        gap: 30px;
+    }   
+
+    .info__products h2{
+        font-size: 30px;
+    }
+
+    .price{
+        font-size: 25px;
+    }
+
+    .btn__product{
+        padding: 20px 0px;
+    }
+}
+
+@media screen and (min-width: 890px){
+    .container__products{
+        gap: 40px;
+        padding: 60px 60px;
+    }
+
+    .img__products{
+        height: 400px;
+    }
+
+    .info__products{
+        gap: 20px;
+    }   
+
+    .info__products h2{
+        font-size: 25px;
+    }
+
+    .price{
+        font-size: 20px;
+    }
+
+    .btn__product{
+        padding: 15px 0px;
+        font-size: 13px;
+    }
+}

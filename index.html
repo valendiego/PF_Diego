@@ -1,11 +1,197 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="description" content="En esta sección vas a encontrar nuestras tortas">
+    <meta name="keywords" content="Pastelería, coffee, cafetería, tortas, cakes, meriendas, desayunos">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <script src="https://kit.fontawesome.com/6e9ee11e2d.js" crossorigin="anonymous"></script>
+    <title>Tortas | Candelitte</title>
 </head>
 <body>
+     <!--HEADER-->
+    <header>
+        <nav>
+            <div class="container__header">
+                <div class="container__number">
+                    <i class="fa-solid fa-headset"></i>
+                    <div class="container__sop">
+                        <p>Soporte al cliente</p>
+                        <p>(011)5331-3859</p>
+                    </div>
+                </div>
+                <div class="container__logo">
+                    <a href="./index.html" class="logo"><img src="./resources/logoo.png" alt="Logo Candelitte"></a>
+                </div>
+                <div class="nav__icon">
+                    <a href="#"><i class="bi bi-person-fill"></i></a>
+                    <a href="#"><i class="bi bi-basket2"></i></a>
+                </div>
+            </div>
+             <!--NAVBAR-->
+            <div class="container__navbar">
+                <div class="fa-solid fa-bars" id="menu__icon"></div>
+                <div class="container__navmenu">
+                    <div id="background__menu"></div>
+                    <ul class="navmenu" id="navmenu">
+                        <li><a href="#" class="navmenu__link">Inicio</a></li>
+                        <li class="nav-item dropdown">
+                            <button class="btn dropdown-toggle" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                PRODUCTOS
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="./index.html">Tortas</a></li>
+                                <li><a class="dropdown-item" href="#">Pastisserie</a></li>
+                                <li><a class="dropdown-item" href="#">Brunch</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu__item"><a href="#" class="navmenu__link">Novedades</a></li>
+                        <li class="menu__item"><a href="#" class="navmenu__link">Sobre nosotros</a></li>
+                        <li class="menu__item"><a href="#" class="navmenu__link">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="container__search">
+                    <form action="#">
+                        <input type="search" placeholder="Buscar...">
+                        <button class="btn__search"><i class="bi bi-search"></i></button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+     <!--CONTENIDO PRINCIPAL-->
+    <main>
+        <!--ICONO WHATSAPP-->
+        <a href="https://wa.me/1153313859" class="btn__whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
+        <section class="text__products">
+            <i class="fa-solid fa-cake-candles"></i>
+            <h1>Nuestras Tortas</h1>
+            <hr class="hr__products">
+        <!--PRODUCTOS-->
+        </section>
+        <div class="container__products">
+            <div class="products">
+                <article>
+                    <img src="./resources/block.jpg" alt="Torta Block" class="img__products">
+                </article>
+                <div class="info__products">
+                    <h2>Torta Block</h2>
+                    <p class="price">$1450</p>
+                    <button class="btn__product">AÑADIR AL CARRITO</button>
+                </div>
+            </div>
+            <div class="products">
+                <article>
+                    <img src="./resources/cadbury.jpg" alt="Torta Cadbury" class="img__products">
+                </article>
+                <div class="info__products">
+                    <h2>Torta Cadbury</h2>
+                    <p class="price">$1350</p>
+                    <button class="btn__product">AÑADIR AL CARRITO</button>
+                </div>
+            </div>
+            <div class="products">
+                <article>
+                    <img src="./resources/chocotorta.jpg" alt="Chocotorta" class="img__products">
+                </article>
+                <div class="info__products">
+                    <h2>Chocotorta</h2>
+                    <p class="price">$1250</p>
+                    <button class="btn__product">AÑADIR AL CARRITO</button>
+                </div>
+            </div>
+            <div class="products">
+                <article>
+                    <img src="./resources/cheesecake.jpg" alt="Cheesecake" class="img__products">
+                </article>
+                <div class="info__products">
+                    <h2>Cheesecake</h2>
+                    <p class="price">$1150</p>
+                    <button class="btn__product">AÑADIR AL CARRITO</button>
+                </div>
+            </div>
+            <div class="products">
+                <article>
+                    <img src="./resources/alimonada.jpg" alt="" class="img__products">
+                </article>
+                <div class="info__products">
+                    <h2>Torta Alimonada</h2>
+                    <p class="price">$1450</p>
+                    <button class="btn__product">AÑADIR AL CARRITO</button>
+                </div>
+            </div>
+            <div class="products">
+                <article>
+                    <img src="./resources/snickers.jpg" alt="Torta Snickers" class="img__products">
+                </article>
+                <div class="info__products">
+                    <h2>Torta Snickers</h2>
+                    <p class="price">$1550</p>
+                    <button class="btn__product">AÑADIR AL CARRITO</button>
+                </div>
+            </div>
+        </div> 
+    </main>
+
+     <!--FOOTER-->
+    <footer>
+        <div class="container__footer">
+            <div class="box__footer">
+                <div class="logo__footer">
+                    <img src="./resources/logoo.png" alt="Logo Candelitte">
+                </div>
+                <div class="resumen">
+                    <p>
+                        Somos una PyME dedicada a la pastelería, creciendo desde 2015. Nuestro objetivo es brindar alegría a las personas con nuestros deliciosos productos
+                        y comodidad en nuestros espacios.
+                    </p>
+                </div>
+            </div>
+            <div class="box__footer">
+                <h4>Menú</h4>
+                <a href="#">Inicio</a>
+                <a href="./index.html">Tortas</a>
+                <a href="#">Pastisserie</a>
+                <a href="#">Brunch</a>
+                <a href="#">Novedades</a>
+                <a href="#">Sobre nosotros</a>
+                <a href="#">Contacto</a>
+            </div>
+
+            <div class="box__footer">
+                <h4>Redes sociales</h4>
+                <a href="https://www.instagram.com/candelitte/" target="_blank"><i class="bi bi-instagram"></i>Instagram</a>
+                <a href="https://www.facebook.com/candelitte/?locale=es_LA" target="_blank"><i class="bi bi-facebook"></i>Facebook</a>
+            </div>
+
+            <div class="box__footer">
+                <h4>Contacto</h4>
+                <a
+                    href="https://www.google.com/maps/place/Candelitte/@-34.7037531,-58.3995574,17z/data=!3m1!4b1!4m6!3m5!1s0x95bccd08948565cf:0xe7593c3d0e326ebf!8m2!3d-34.7037575!4d-58.3969825!16s%2Fg%2F11n_94nm9h?hl=es-419&entry=ttu" target="_blank"><i
+                        class="bi bi-geo-alt-fill"></i>2 de Mayo 2802, Lanús</a>
+                <a
+                    href="https://www.google.com/maps/place/Candelitte/@-34.7575366,-58.4075315,17z/data=!3m1!4b1!4m6!3m5!1s0x95bcd37c316f8ed3:0xf65a0791c25adb56!8m2!3d-34.757541!4d-58.4049566!16s%2Fg%2F11scp4ppcr?hl=es-419&entry=ttu" target="_blank"><i
+                        class="bi bi-geo-alt-fill"></i>Antonio Sáenz 601, Lomas de Zamora</a>
+                <a href="https://mail.google.com/" target="_blank"><i class="bi bi-envelope-fill"></i>candelitte@gmail.com</a>
+                <a href="https://wa.me/1153313859" target="_blank"><i class="bi bi-whatsapp"></i>(011)5331-3859</a>
+            </div>
+        </div>
+        <div class="footer__copy">
+            <small>&copy; 2023 <b>Candelitte</b></small>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
     <script src="./js/main.js"></script>
 </body>
 </html>

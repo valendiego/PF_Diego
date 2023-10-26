@@ -1,0 +1,61 @@
+footer{
+    width: 100%;
+    background-color: #F3D9DC;
+        .container__footer{
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: auto;
+            cursor: default;
+                .box__footer{
+                    display: flex;
+                    flex-direction: column;
+                    padding: 40px;
+                        .logo__footer{
+                            img{
+                                height: 150px;
+                                margin-top: -40px;
+                            }
+                        }
+                        .resumen{
+                            max-width: 350px;
+                            font-weight: 500;
+                            color: #777;
+                            font-size: 15px;
+                            margin-top: -20px;
+                        }
+                        h4{
+                            margin-bottom: 20px;
+                            color: #C78283;
+                            font-weight: 700;
+                            font-size: 20px;
+                        }
+                        a{
+                            margin-top: 10px;
+                            color: #777;
+                            font-weight: 400;
+                            transition: all .42s ease;
+                            text-decoration: none;
+                                i{
+                                    padding: 0 10px;
+                                    margin-left: -9px;
+                                }
+                        }
+                        a:hover{
+                            opacity: 0.8;
+                            color: #C78283;
+                        }
+                        
+                }
+        }
+        .footer__copy{
+            text-align: center;
+            font-size:  20px;
+            font-weight: 200;
+            cursor: default;
+            color: #777;
+            margin-top: 20px;
+        }
+}

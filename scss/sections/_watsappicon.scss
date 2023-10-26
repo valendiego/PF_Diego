@@ -1,0 +1,30 @@
+.btn__whatsapp{
+    position: fixed;
+    z-index: 1;
+    bottom: 30px;
+    right: 30px;
+        .fa-whatsapp{
+            font-size: 2.5rem;
+            background-color: rgb(49, 196, 49);
+            border: 2px solid rgb(49, 196, 49);
+            color: #fff;
+            border-radius: 100%;
+            padding: 10px;
+            transition: all .42s ease;
+            animation: whatsappAnimation 2s ease-in-out;
+        }
+        .fa-whatsapp:hover{
+            background-color: rgb(255, 255, 255);
+            color: rgb(49, 196, 49);
+            border: 2px solid rgb(49, 196, 49);
+        }
+}
+
+@keyframes whatsappAnimation{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
