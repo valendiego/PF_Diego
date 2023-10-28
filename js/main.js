@@ -15,8 +15,27 @@ function restaStock(stock){
     return stock - totalUnidades;
 }
 
+function eliminarDelCarrito(nombreProducto) {
+    const indiceProducto = carrito.findIndex(producto => producto.producto.toLowerCase() === nombreProducto.toLowerCase());
+
+    if (indiceProducto !== -1) {
+        const unidadesEliminadas = carrito[indiceProducto].unidades;
+        carrito.splice(indiceProducto, 1);
+
+        const indiceTorta = tortas.findIndex(torta => torta.nombre.toLowerCase() === nombreProducto.toLowerCase());
+        if (indiceTorta !== -1) {
+            tortas[indiceTorta].stock += unidadesEliminadas;
+        }
+
+        alert("Se eliminaron " + unidadesEliminadas + " unidades de " + nombreProducto + " del carrito.");
+    } else {
+        alert("El producto " + nombreProducto + " no está en el carrito.");
+    }
+}
+
+
 function fcAgregarAlCarrito() {
-    let producto = prompt("Ingrese el nombre del producto que desea agregar al carrito. Presione 0 para volver atrás.");
+    let producto = prompt("Ingrese el nombre del producto que desea agregar al carrito. Presione 0 para volver atrás.\nNuestra lista de productos:\n" + mostrarTortas.join(" - ")).toLowerCase();
     while(producto !== "0"){
         if (producto.toLowerCase() == "torta block" || producto.toLowerCase() == "torta cadbury" || producto.toLowerCase() == "chocotorta" || producto.toLowerCase() == "cheesecake" || producto.toLowerCase() == "torta alimonada" || producto.toLowerCase() == "torta snickers"){
             switch(producto){
@@ -128,20 +147,22 @@ function fcAgregarAlCarrito() {
         } else {
             alert("Producto incorrecto. Asegúrese de ingresar bien el nombre del producto.")
         }
-        producto = prompt("Ingrese el nombre del producto que desea agregar al carrito. Presione 0 para volver atrás.");
+        producto = prompt("Ingrese el nombre del producto que desea agregar al carrito. Presione 0 para volver atrás.\nNuestra lista de productos:\n" + mostrarTortas.join(" - ")).toLowerCase();
     }
 }
 
-function comprar() {
-    const mostrarTortas = tortas.map((producto) => producto.nombre + " $" + producto.precio);
-    alert("Nuestra lista de productos:\nSECCIÓN TORTAS:\n" + mostrarTortas.join(" - "));
-    let operacionComprar = parseInt(prompt("Ingrese la operación que desea realizar:\n1- AGREGAR UN PRODUCTO AL CARRITO\n2- CONSULTAR MI CARRITO\n3- FINALIZAR LA COMPRA\n4- VOLVER A VER LOS PRODUCTOS\n0- VOLVER AL INICIO"));
-    while(operacionComprar !== 0){
-        switch(operacionComprar){
+function tienda() {
+    let operacion = parseInt(prompt("¡Bienvenido a Candelitte! Ingrese la operación que desea realizar:\n1- AGREGAR UN PRODUCTO AL CARRITO\n2- ELIMINAR UN PRODUCTO DEL CARRITO\n3- CONSULTAR MI CARRITO\n4- FINALIZAR LA COMPRA\n0- SALIR"));
+    while(operacion !== 0){
+        switch(operacion){
             case 1:
                 fcAgregarAlCarrito();
                 break;
             case 2:
+                const productoEliminar = prompt("Ingrese el nombre del producto que desea eliminar del carrito.");
+                eliminarDelCarrito(productoEliminar);
+                break;
+            case 3:
                 if(carrito.length > 0){
                     const consultarCarrito = carrito.map((producto) => producto.unidades + " unidades de " + producto.producto + " a $" + producto.precio * producto.unidades);
                     alert("Su carrito:\n" + consultarCarrito.join("\n"));
@@ -149,7 +170,7 @@ function comprar() {
                     alert("Su carrito está vacío. Agregue productos para poder comprar.");
                 }
                 break;
-            case 3:
+            case 4:
                 if(carrito.length > 0){
                     alert("¡Compra finalizada! Podrá visualizar el resumen de su compra en la consola al salir del programa. ¡Hasta la próxima!");
                     carrito.forEach((carritoFinal) => {
@@ -161,16 +182,17 @@ function comprar() {
                     alert("Su carrito está vacío. Agregue productos para poder comprar.");
                 }
                 break;
-            case 4:
-                alert("Nuestra lista de productos:\nSECCIÓN TORTAS:\n" + mostrarTortas.join(" - "));
-                break;
             default:
                 alert("Ingrese una operación válida.");
                 break;
         }
-        operacionComprar = parseInt(prompt("Ingrese la operación que desea realizar:\n1- AGREGAR UN PRODUCTO AL CARRITO\n2- CONSULTAR MI CARRITO\n3- FINALIZAR LA COMPRA\n4- VOLVER A VER LOS PRODUCTOS\n0- VOLVER AL INICIO"));
+        operacion = parseInt(prompt("¡Bienvenido a Candelitte! Ingrese la operación que desea realizar:\n1- AGREGAR UN PRODUCTO AL CARRITO\n2- ELIMINAR UN PRODUCTO DEL CARRITO\n3- CONSULTAR MI CARRITO\n4- FINALIZAR LA COMPRA\n0- SALIR"));
+    }
+    if(operacion === 0){
+        alert("Muchas gracias por entrar a nuestra web, ¡hasta la próxima!");
     }
 }
+
 
 // Variables
 const tortas = [
@@ -183,32 +205,12 @@ const tortas = [
 ];
 
 const carrito = [];
+const mostrarTortas = tortas.map((producto) => producto.nombre + " $" + producto.precio);
 let precio = tortas[0].precio;
 let unidades = 0;
 let totalUnidades = 0;
+let eliminarUnidades = 0;
 
 // Inicio del programa
-let operacion = parseInt(prompt("¡Bienvenido a Candelitte! Ingrese la operación que desea realizar:\n1- COMPRAR\n2- VER LOS PRODUCTOS\n0- SALIR"));
-
-while(operacion !== 0){
-    switch(operacion){
-        case 1:
-            comprar();
-            break;
-
-        case 2:
-            const mostrarTortas = tortas.map((producto) => producto.nombre + " $" + producto.precio);
-            alert("Nuestra lista de productos:\nSECCIÓN TORTAS:\n" + mostrarTortas.join(" - "));
-            break;
-            
-        default:
-            alert("Ingrese una operación válida.");
-            break;
-    }
-    operacion = parseInt(prompt("¡Bienvenido a Candelitte! Ingrese la operación que desea realizar:\n1- COMPRAR\n2- VER LOS PRODUCTOS\n0- SALIR"));
-}
-if(operacion === 0){
-    alert("Muchas gracias por entrar a nuestra web, ¡hasta la próxima!");
-}
-
+tienda();
 console.log(carrito);
