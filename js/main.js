@@ -51,7 +51,7 @@ function fcAgregarAlCarrito() {
                     while(unidades > 0 && unidades <= tortas[0].stock){
                         alert("Agregaste " + unidades + " unidades de " + tortas[0].nombre + ".");
                         totalUnidades += unidades;
-                        restaStock(tortas[0].stock);
+                        tortas[0].stock -= unidades;
                         carrito.push({producto,unidades,precio});
                         break;
                     }
@@ -68,7 +68,7 @@ function fcAgregarAlCarrito() {
                     while(unidades > 0 && unidades <= tortas[1].stock){
                         alert("Agregaste " + unidades + " unidades de " + tortas[1].nombre + ".");
                         totalUnidades += unidades;
-                        restaStock(tortas[1].stock);
+                        tortas[1].stock -= unidades;
                         carrito.push({producto,unidades,precio});
                         break;
                     }
@@ -85,7 +85,7 @@ function fcAgregarAlCarrito() {
                     while(unidades > 0 && unidades <= tortas[2].stock){
                         alert("Agregaste " + unidades + " unidades de " + tortas[2].nombre + ".");
                         totalUnidades += unidades;
-                        restaStock(tortas[2].stock);
+                        tortas[2].stock -= unidades;
                         carrito.push({producto,unidades,precio});
                         break;
                     }
@@ -102,7 +102,7 @@ function fcAgregarAlCarrito() {
                     while(unidades > 0 && unidades <= tortas[3].stock){
                         alert("Agregaste " + unidades + " unidades de " + tortas[3].nombre + ".");
                         totalUnidades += unidades;
-                        restaStock(tortas[3].stock);
+                        tortas[3].stock -= unidades;
                         carrito.push({producto,unidades,precio});
                         break;
                     }
@@ -119,7 +119,7 @@ function fcAgregarAlCarrito() {
                     while(unidades > 0 && unidades <= tortas[4].stock){
                         alert("Agregaste " + unidades + " unidades de " + tortas[4].nombre + ".");
                         totalUnidades += unidades;
-                        restaStock(tortas[4].stock);
+                        tortas[4].stock -= unidades;
                         carrito.push({producto,unidades,precio});
                         break;
                     }
@@ -136,7 +136,7 @@ function fcAgregarAlCarrito() {
                     while(unidades > 0 && unidades <= tortas[5].stock){
                         alert("Agregaste " + unidades + " unidades de " + tortas[5].nombre + ".");
                         totalUnidades += unidades;
-                        restaStock(tortas[5].stock);
+                        tortas[5].stock -= unidades;
                         carrito.push({producto,unidades,precio});
                         break;
                     }
@@ -189,7 +189,7 @@ function tienda() {
         operacion = parseInt(prompt("¡Bienvenido a Candelitte! Ingrese la operación que desea realizar:\n1- AGREGAR UN PRODUCTO AL CARRITO\n2- ELIMINAR UN PRODUCTO DEL CARRITO\n3- CONSULTAR MI CARRITO\n4- FINALIZAR LA COMPRA\n0- SALIR"));
     }
     if(operacion === 0){
-        alert("Muchas gracias por entrar a nuestra web, ¡hasta la próxima!");
+        alert("Muchas gracias por entrar a nuestra web. ¡Hasta la próxima!")
     }
 }
 
@@ -214,3 +214,4 @@ let eliminarUnidades = 0;
 // Inicio del programa
 tienda();
 console.log(carrito);
+tortas[0].mostrarProducto();
