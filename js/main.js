@@ -11,7 +11,35 @@ class Producto {
     }
 }
 
-function restaStock(stock){
+function consultarCarriito() {
+    const consultarCarrito = carrito.map((producto) => producto.unidades + " unidades de " + producto.producto + " a $" + producto.precio * producto.unidades);
+    return "Su carrito:\n" + consultarCarrito.join("\n");
+}
+
+function finalizarCompra() {
+    const total = carrito.reduce((acc, el) => acc + el.precio * el.unidades, 0);
+    return "¡Compra finalizada!\n" + consultarCarriito() + "\nEl total de su compra es de: $" + total + "\n¡Hasta la próxima!";
+}
+
+function casoParaEmpujarAlCarrito(indice, producto) {
+    precio = tortas[indice].precio;
+    unidades = parseInt(prompt("Ingrese cuántas unidades desea agregar."));
+    totalUnidades += unidades;
+    if (unidades > tortas[indice].stock) {
+        alert("No contamos con suficiente stock de ese producto.");
+    } else if (unidades <= 0) {
+        alert("Ingrese un valor mayor a 0.");
+    }
+    while (unidades > 0 && unidades <= tortas[indice].stock) {
+        alert("Agregaste " + unidades + " unidades de " + tortas[indice].nombre + ".");
+        totalUnidades += unidades;
+        tortas[0].stock -= unidades;
+        carrito.push({ producto, unidades, precio });
+        break;
+    }
+}
+
+function restaStock(stock) {
     return stock - totalUnidades;
 }
 
@@ -33,128 +61,43 @@ function eliminarDelCarrito(nombreProducto) {
     }
 }
 
-
 function fcAgregarAlCarrito() {
     let producto = prompt("Ingrese el nombre del producto que desea agregar al carrito. Presione 0 para volver atrás.\nNuestra lista de productos:\n" + mostrarTortas.join(" - ")).toLowerCase();
-    while(producto !== "0"){
-        if (producto.toLowerCase() == "torta block" || producto.toLowerCase() == "torta cadbury" || producto.toLowerCase() == "chocotorta" || producto.toLowerCase() == "cheesecake" || producto.toLowerCase() == "torta alimonada" || producto.toLowerCase() == "torta snickers"){
-            switch(producto){
-                case "torta block":
-                    precio = tortas[0].precio;
-                    unidades = parseInt(prompt("Ingrese cuántas unidades desea agregar."));
-                    totalUnidades += unidades;
-                        if (unidades > tortas[0].stock){
-                            alert("No contamos con suficiente stock de ese producto.");
-                        } else if (unidades <= 0){
-                            alert("Ingrese un valor mayor a 0.");
-                        }
-                    while(unidades > 0 && unidades <= tortas[0].stock){
-                        alert("Agregaste " + unidades + " unidades de " + tortas[0].nombre + ".");
-                        totalUnidades += unidades;
-                        tortas[0].stock -= unidades;
-                        carrito.push({producto,unidades,precio});
-                        break;
-                    }
-                    break;
-                case "torta cadbury":
-                    precio = tortas[1].precio;
-                    unidades = parseInt(prompt("Ingrese cuántas unidades desea agregar."));
-                    totalUnidades += unidades;
-                        if (unidades > tortas[1].stock){
-                            alert("No contamos con suficiente stock de ese producto.");
-                        } else if (unidades <= 0){
-                            alert("Ingrese un valor mayor a 0.");
-                        }
-                    while(unidades > 0 && unidades <= tortas[1].stock){
-                        alert("Agregaste " + unidades + " unidades de " + tortas[1].nombre + ".");
-                        totalUnidades += unidades;
-                        tortas[1].stock -= unidades;
-                        carrito.push({producto,unidades,precio});
-                        break;
-                    }
-                    break;
-                case "chocotorta":
-                    precio = tortas[2].precio;
-                    unidades = parseInt(prompt("Ingrese cuántas unidades desea agregar."));
-                    totalUnidades += unidades;
-                        if (unidades > tortas[2].stock){
-                            alert("No contamos con suficiente stock de ese producto.");
-                        } else if (unidades <= 0){
-                            alert("Ingrese un valor mayor a 0.");
-                        }
-                    while(unidades > 0 && unidades <= tortas[2].stock){
-                        alert("Agregaste " + unidades + " unidades de " + tortas[2].nombre + ".");
-                        totalUnidades += unidades;
-                        tortas[2].stock -= unidades;
-                        carrito.push({producto,unidades,precio});
-                        break;
-                    }
-                    break;
-                case "cheesecake":
-                    precio = tortas[3].precio;
-                    unidades = parseInt(prompt("Ingrese cuántas unidades desea agregar."));
-                    totalUnidades += unidades;
-                        if (unidades > tortas[3].stock){
-                            alert("No contamos con suficiente stock de ese producto.");
-                        } else if (unidades <= 0){
-                            alert("Ingrese un valor mayor a 0.");
-                        }
-                    while(unidades > 0 && unidades <= tortas[3].stock){
-                        alert("Agregaste " + unidades + " unidades de " + tortas[3].nombre + ".");
-                        totalUnidades += unidades;
-                        tortas[3].stock -= unidades;
-                        carrito.push({producto,unidades,precio});
-                        break;
-                    }
-                    break;
-                case "torta alimonada":
-                    precio = tortas[4].precio;
-                    unidades = parseInt(prompt("Ingrese cuántas unidades desea agregar."));
-                    totalUnidades += unidades;
-                        if (unidades > tortas[4].stock){
-                            alert("No contamos con suficiente stock de ese producto.");
-                        } else if (unidades <= 0){
-                            alert("Ingrese un valor mayor a 0.");
-                        }
-                    while(unidades > 0 && unidades <= tortas[4].stock){
-                        alert("Agregaste " + unidades + " unidades de " + tortas[4].nombre + ".");
-                        totalUnidades += unidades;
-                        tortas[4].stock -= unidades;
-                        carrito.push({producto,unidades,precio});
-                        break;
-                    }
-                    break;
-                case "torta snickers":
-                    precio = tortas[5].precio;
-                    unidades = parseInt(prompt("Ingrese cuántas unidades desea agregar."));
-                    totalUnidades += unidades;
-                        if (unidades > tortas[5].stock){
-                            alert("No contamos con suficiente stock de ese producto.");
-                        } else if (unidades <= 0){
-                            alert("Ingrese un valor mayor a 0.");
-                        }
-                    while(unidades > 0 && unidades <= tortas[5].stock){
-                        alert("Agregaste " + unidades + " unidades de " + tortas[5].nombre + ".");
-                        totalUnidades += unidades;
-                        tortas[5].stock -= unidades;
-                        carrito.push({producto,unidades,precio});
-                        break;
-                    }
-                    break;
-                default:
-                    break;
-            }
-        } else {
-            alert("Producto incorrecto. Asegúrese de ingresar bien el nombre del producto.")
+    while (producto !== "0") {
+
+
+        switch (producto.toLowerCase()) {
+            case "torta block":
+                casoParaEmpujarAlCarrito(0, producto);
+                break;
+            case "torta cadbury":
+                casoParaEmpujarAlCarrito(1, producto);
+                break;
+            case "chocotorta":
+                casoParaEmpujarAlCarrito(2, producto);
+                break;
+            case "cheesecake":
+                casoParaEmpujarAlCarrito(3, producto);
+                break;
+            case "torta alimonada":
+                casoParaEmpujarAlCarrito(4, producto);
+                break;
+            case "torta snickers":
+                casoParaEmpujarAlCarrito(5, producto);
+                break;
+            default:
+                alert("Producto incorrecto. Asegúrese de ingresar bien el nombre del producto.")
+                break;
         }
+
         producto = prompt("Ingrese el nombre del producto que desea agregar al carrito. Presione 0 para volver atrás.\nNuestra lista de productos:\n" + mostrarTortas.join(" - ")).toLowerCase();
     }
 }
 
 function tienda() {
     let operacion = parseInt(prompt("¡Bienvenido a Candelitte! Ingrese la operación que desea realizar:\n1- AGREGAR UN PRODUCTO AL CARRITO\n2- ELIMINAR UN PRODUCTO DEL CARRITO\n3- CONSULTAR MI CARRITO\n4- FINALIZAR LA COMPRA\n0- SALIR"));
-    while(operacion !== 0){
-        switch(operacion){
+    while (operacion !== 0) {
+        switch (operacion) {
             case 1:
                 fcAgregarAlCarrito();
                 break;
@@ -163,23 +106,17 @@ function tienda() {
                 eliminarDelCarrito(productoEliminar);
                 break;
             case 3:
-                if(carrito.length > 0){
-                    const consultarCarrito = carrito.map((producto) => producto.unidades + " unidades de " + producto.producto + " a $" + producto.precio * producto.unidades);
-                    alert("Su carrito:\n" + consultarCarrito.join("\n"));
+                if (carrito.length > 0) {
+                    alert(consultarCarriito());
                 } else {
-                    alert("Su carrito está vacío. Agregue productos para poder comprar.");
+                    alert("Su carrito está vacío.");
                 }
                 break;
             case 4:
-                if(carrito.length > 0){
-                    alert("¡Compra finalizada! Podrá visualizar el resumen de su compra en la consola al salir del programa. ¡Hasta la próxima!");
-                    carrito.forEach((carritoFinal) => {
-                        console.log(carritoFinal.unidades + " unidades de " + carritoFinal.producto + " a $" + carritoFinal.precio * carritoFinal.unidades);
-                    });
-                    const total = carrito.reduce((acc,el) => acc + el.precio * el.unidades,0);
-                    console.log("El total de su compra es de: $" + total);
+                if (carrito.length > 0) {
+                    alert(finalizarCompra());
                 } else {
-                    alert("Su carrito está vacío. Agregue productos para poder comprar.");
+                    alert("Su carrito está vacío. No hay productos que eliminar.");
                 }
                 break;
             default:
@@ -188,11 +125,9 @@ function tienda() {
         }
         operacion = parseInt(prompt("¡Bienvenido a Candelitte! Ingrese la operación que desea realizar:\n1- AGREGAR UN PRODUCTO AL CARRITO\n2- ELIMINAR UN PRODUCTO DEL CARRITO\n3- CONSULTAR MI CARRITO\n4- FINALIZAR LA COMPRA\n0- SALIR"));
     }
-    if(operacion === 0){
-        alert("Muchas gracias por entrar a nuestra web. ¡Hasta la próxima!")
-    }
-}
 
+    alert("Muchas gracias por entrar a nuestra web. ¡Hasta la próxima!")
+}
 
 // Variables
 const tortas = [
@@ -213,5 +148,3 @@ let eliminarUnidades = 0;
 
 // Inicio del programa
 tienda();
-console.log(carrito);
-tortas[0].mostrarProducto();
