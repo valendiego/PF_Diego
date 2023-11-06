@@ -47,11 +47,6 @@
     transition: all .42s ease;
 }
 
-.img__products:hover{
-    transform: scale(1.1);
-    transition: all .42s ease;
-}
-
 .container__products{
     display: flex;
     flex-wrap: wrap;
@@ -85,7 +80,7 @@
     gap: 20px;
 }
 
-.info__products h2{
+.name__product{
     font-size: 25px;
     font-weight: 500;
 }
