@@ -49,13 +49,19 @@ header {
     margin-top: 5px;
     width: 200px;
   }
+
+  .nav__icon{
+    display: flex;
+  }
   
-  .nav__icon a {
+  .nav__icon a,
+  #carrito__icon {
     margin: 0 10px;
     font-size: 1.5rem;
   }
   
-  .nav__icon i {
+  .nav__icon i,
+  #carrito__icon{
     font-size: 3rem;
     color: #C78283;
     font-weight: 400;
@@ -63,7 +69,8 @@ header {
     cursor: pointer;
   }
   
-  .nav__icon i:hover {
+  .nav__icon i:hover,
+  #carrito__icon:hover {
     color: #fff;
   }
   
