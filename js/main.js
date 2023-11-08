@@ -279,11 +279,6 @@ const tortas = [
     ];
     
     let carrito = [];
-    const mostrarTortas = tortas.map((producto) => producto.nombre + " $" + producto.precio);
-    let precio = tortas[0].precio;
-    let unidades = 0;
-    let totalUnidades = 0;
-    let eliminarUnidades = 0;
 
     renderizarProductos(tortas);
     inicializarInput();
