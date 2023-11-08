@@ -72,7 +72,6 @@ nav {
 .nav__icon a,
 #carrito__icon {
   margin: 0 10px;
-  font-size: 1.5rem;
 }
 
 .nav__icon i,
@@ -821,13 +820,14 @@ footer .footer__copy {
   font-size: 1rem;
   color: #fff;
   background-color: #C78283;
+  border: 1px solid #C78283;
   transition: all 0.42s ease;
 }
 
 .btn:hover {
-  color: #fff;
-  background-color: #C78283;
-  transform: scale(1.1);
+  color: #C78283;
+  background-color: #fff;
+  border: 1px solid #C78283;
 }
 
 @media screen and (max-width: 550px) {
