@@ -296,10 +296,12 @@ nav {
   .logo img {
     width: 120px;
   }
-  .nav__icon a {
+  .nav__icon a,
+  #carrito__icon {
     margin: 0px;
   }
-  .nav__icon i {
+  .nav__icon i,
+  #carrito__icon {
     font-size: 2rem;
   }
   .nav__icon .bi-person-fill {
@@ -318,7 +320,8 @@ nav {
   .logo img {
     width: 150px;
   }
-  .nav__icon a {
+  .nav__icon a,
+  #carrito__icon {
     margin: 3px;
   }
   .nav__icon .bi-person-fill {
@@ -354,7 +357,8 @@ nav {
   .container__sop p {
     font-size: 0.8rem;
   }
-  .nav__icon i {
+  .nav__icon i,
+  #carrito__icon {
     margin: 0 5px;
     font-size: 2.5rem;
   }
@@ -373,15 +377,17 @@ nav {
   .container__sop p {
     font-size: 1rem;
   }
-  .nav__icon a {
+  .nav__icon a,
+  #carrito__icon {
     font-size: 1.5rem;
   }
-  .nav__icon i {
+  .nav__icon i,
+  #carrito__icon {
     font-size: 3rem;
   }
   .nav__icon .bi-person-fill {
     font-size: 3rem;
-    padding-right: 1.8rem;
+    padding-right: 1rem;
   }
   .container__navbar {
     display: flex;
@@ -763,12 +769,39 @@ footer .footer__copy {
   width: 50px;
 }
 
+.bi-x {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  left: 0;
+  bottom: 0;
+  position: relative;
+  padding: 0;
+  border-radius: 100%;
+  cursor: pointer;
+  transition: all 0.42s ease;
+  background-color: #C78283;
+  color: white;
+  border: 2px solid #C78283;
+}
+
+.bi-x:hover {
+  background-color: #fff;
+  border: 2px solid #C78283;
+  color: #C78283;
+}
+
 .carrito__vacio {
   display: flex;
   font-size: 2rem;
   position: relative;
   top: 45%;
   color: #777;
+}
+
+.table {
+  margin-top: 30px;
 }
 
 .div__botones {
@@ -795,4 +828,10 @@ footer .footer__copy {
   color: #fff;
   background-color: #C78283;
   transform: scale(1.1);
+}
+
+@media screen and (max-width: 550px) {
+  .container__carrito {
+    width: 350px;
+  }
 }/*# sourceMappingURL=styles.css.map */

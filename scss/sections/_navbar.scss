@@ -287,11 +287,13 @@ header {
       width: 120px;
     }
 
-    .nav__icon a {
+    .nav__icon a,
+    #carrito__icon {
       margin: 0px;
     }
 
-    .nav__icon i {
+    .nav__icon i,
+    #carrito__icon {
       font-size: 2rem;
     }
 
@@ -315,7 +317,8 @@ header {
       width: 150px;
     }
 
-    .nav__icon a {
+    .nav__icon a,
+    #carrito__icon {
       margin: 3px;
     }
 
@@ -361,7 +364,8 @@ header {
       font-size: 0.8rem;
     }
     
-    .nav__icon i {
+    .nav__icon i,
+    #carrito__icon {
       margin: 0 5px;
       font-size: 2.5rem;
     }
@@ -385,17 +389,19 @@ header {
       font-size: 1rem;
     }
     
-    .nav__icon a {
+    .nav__icon a,
+    #carrito__icon {
       font-size: 1.5rem;
     }
 
-    .nav__icon i {
+    .nav__icon i,
+    #carrito__icon {
       font-size: 3rem;
     }
 
     .nav__icon .bi-person-fill {
       font-size: 3rem;
-      padding-right: 1.8rem;
+      padding-right: 1rem;
     }
 
     .container__navbar {

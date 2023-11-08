@@ -20,12 +20,40 @@
   width: 50px;
 }
 
+.bi-x{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  left: 0;
+  bottom: 0;
+  position: relative;
+  padding: 0;
+  border-radius:100%;
+  cursor: pointer;
+  transition: all .42s ease;
+  background-color: $primarioOscuro;
+  color: white;
+  border: 2px solid $primarioOscuro;
+}
+
+.bi-x:hover{
+  background-color: #fff;
+  border: 2px solid $primarioOscuro;
+  color: $primarioOscuro;
+}
+
+
 .carrito__vacio{
   display: flex;
   font-size: 2rem;
   position: relative;
   top: 45%;
   color: #777;
+}
+
+.table{
+  margin-top: 30px;
 }
 
 .div__botones{
@@ -52,4 +80,10 @@
   color: #fff;
   background-color: $primarioOscuro;
   transform: scale(1.1);
+}
+
+@media screen and (max-width: 550px){
+  .container__carrito{
+    width: 350px;
+  }
 }
