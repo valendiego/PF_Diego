@@ -154,7 +154,6 @@ function renderizarProductos(arreglo){
             vacio.classList.remove("d-none");
 
         }
-        renderizarCarrito(carrito);
     }
 
     function renderizarCarrito(productosCarrito){
