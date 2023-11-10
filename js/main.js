@@ -269,12 +269,12 @@ function renderizarProductos(arreglo){
     }
 
 const tortas = [
-        new Producto("Torta Block", 1450, 5, "../resources/block.jpg", "Torta Block"),
-        new Producto("Torta Cadbury", 1350, 8, "../resources/cadbury.jpg", "Torta Cadbury"),
-        new Producto("Chocotorta", 1250, 6, "../resources/chocotorta.jpg", "Chocotorta"),
-        new Producto("Cheesecake", 1150, 9, "../resources/cheesecake.jpg", "Cheesecake"),
-        new Producto("Torta Alimonada", 1450, 4, "../resources/alimonada.jpg", "Torta Alimonada"),
-        new Producto("Torta Snickers", 1550, 10, "../resources/snickers.jpg", "Torta Snickers"),
+        new Producto("Torta Block", 1450, 5, "./resources/block.jpg", "Torta Block"),
+        new Producto("Torta Cadbury", 1350, 8, "./resources/cadbury.jpg", "Torta Cadbury"),
+        new Producto("Chocotorta", 1250, 6, "./resources/chocotorta.jpg", "Chocotorta"),
+        new Producto("Cheesecake", 1150, 9, "./resources/cheesecake.jpg", "Cheesecake"),
+        new Producto("Torta Alimonada", 1450, 4, "./resources/alimonada.jpg", "Torta Alimonada"),
+        new Producto("Torta Snickers", 1550, 10, "./resources/snickers.jpg", "Torta Snickers"),
     ];
     
     let carrito = [];
