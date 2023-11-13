@@ -34,7 +34,8 @@
                 </div>
                 <div class="nav__icon">
                     <a href="#"><i class="bi bi-person-fill"></i></a>
-                    <div class="bi bi-basket2" id="carrito__icon"></div>
+                    <div class="bi bi-cart4" id="carrito__icon"></div>
+                    <span id="contadorCarrito">0</span>
                 </div>
             </div>
             <!--NAVBAR-->
@@ -86,14 +87,41 @@
             </select>
         </div>
         <div class="container__carrito" id="carrito">
+            <div class="bi bi-x" id="cerrar__carrito"></div>
             <h2 id="carritoVacio" class="carrito__vacio">Su carrito está vacío :(</h2>
+            <h2 id="carritoLleno">Carrito de compras</h2>
             <table class="table">
                 <div>
                     <tbody>
 
                     </tbody>
             </table>
+            <div class="container__totalescompra" id="contenedorTotales">
+                <p id="subtotal"></p>
+                <p id="iva"></p>
+                <p id="total"></p>
+                <button id="finalizarCompra">FINALIZAR COMPRA</button>
+            </div>
         </div>
+
+        <div class="modal fade" id="modalFinalizarCompra" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Compra realizada con éxito</h5>
+                    </div>
+                    <div class="modal-body">
+                        <p>Gracias por tu compra. ¡Esperamos verte pronto!</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                            id="cerrarModal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <div class="container__products" id="contenedor">
             <div class="products">
