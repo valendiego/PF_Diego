@@ -10,7 +10,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     transition: all 0.5s ease;
     z-index: 1;
     box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.2);
@@ -29,16 +29,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2rem;
-  left: 43%;
-  bottom: -2%;
+  font-size: 1.8rem;
+  left: 88%;
+  bottom: -3%;
   position: relative;
   padding: 0;
   border-radius:100%;
   cursor: pointer;
   transition: all .42s ease;
   background-color: $primarioOscuro;
-  color: white;
+  color: #fff;
   border: 2px solid $primarioOscuro;
 }
 
@@ -108,11 +108,9 @@
 }
 
 #carritoLleno{
-  position: relative;
-  bottom:0;
-  right: 22%;
   font-size: 1.7rem;
   color: #2c2c2c;
+  padding: 10px;
 }
 
 .table{
@@ -131,9 +129,10 @@
   color: #2c2c2c;
 }
 
-@media screen and (max-width: 550px){
+
+@media screen and (max-width: 460px){
   .container__carrito{
-    width: 350px;
+    width: 100%;
   }
 }
 

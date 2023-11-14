@@ -296,10 +296,12 @@ nav {
   .logo img {
     width: 120px;
   }
-  .nav__icon a {
+  .nav__icon a,
+  #carrito__icon {
     margin: 0px;
   }
-  .nav__icon i {
+  .nav__icon i,
+  #carrito__icon {
     font-size: 2rem;
   }
   .nav__icon .bi-person-fill {
@@ -318,7 +320,8 @@ nav {
   .logo img {
     width: 150px;
   }
-  .nav__icon a {
+  .nav__icon a,
+  #carrito__icon {
     margin: 3px;
   }
   .nav__icon .bi-person-fill {
@@ -354,7 +357,8 @@ nav {
   .container__sop p {
     font-size: 0.8rem;
   }
-  .nav__icon i {
+  .nav__icon i,
+  #carrito__icon {
     margin: 0 5px;
     font-size: 2.5rem;
   }
@@ -373,10 +377,12 @@ nav {
   .container__sop p {
     font-size: 1rem;
   }
-  .nav__icon a {
+  .nav__icon a,
+  #carrito__icon {
     font-size: 1.5rem;
   }
-  .nav__icon i {
+  .nav__icon i,
+  #carrito__icon {
     font-size: 3rem;
   }
   .nav__icon .bi-person-fill {
@@ -753,7 +759,7 @@ footer .footer__copy {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   transition: all 0.5s ease;
   z-index: 1;
   box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.2);
@@ -772,16 +778,16 @@ footer .footer__copy {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2rem;
-  left: 43%;
-  bottom: -2%;
+  font-size: 1.8rem;
+  left: 88%;
+  bottom: -3%;
   position: relative;
   padding: 0;
   border-radius: 100%;
   cursor: pointer;
   transition: all 0.42s ease;
   background-color: #C78283;
-  color: white;
+  color: #fff;
   border: 2px solid #C78283;
 }
 
@@ -849,11 +855,9 @@ footer .footer__copy {
 }
 
 #carritoLleno {
-  position: relative;
-  bottom: 0;
-  right: 22%;
   font-size: 1.7rem;
   color: #2c2c2c;
+  padding: 10px;
 }
 
 .table {
@@ -871,9 +875,9 @@ footer .footer__copy {
   color: #2c2c2c;
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 460px) {
   .container__carrito {
-    width: 350px;
+    width: 100%;
   }
 }
 @media screen and (max-width: 699px) {
