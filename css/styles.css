@@ -774,12 +774,24 @@ footer .footer__copy {
   padding: 30px;
 }
 
+.swal2-popup {
+  background: #fff;
+}
+
+.swal2-styled.swal2-confirm {
+  background-color: #C78283;
+}
+
+.swal2-title {
+  color: #2c2c2c;
+}
+
 .bi-x {
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 1.8rem;
-  left: 88%;
+  left: 89%;
   bottom: -3%;
   position: relative;
   padding: 0;
