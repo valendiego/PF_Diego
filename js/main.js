@@ -1,15 +1,10 @@
 
 class Producto {
-    constructor(nombre, precio, stock, imagen, descripcionImagen) {
+    constructor(nombre, precio, imagen, descripcionImagen) {
         this.nombre = nombre;
         this.precio = precio;
-        this.stock = stock;
         this.imagen = imagen;
         this.descripcionImagen = descripcionImagen;
-    }
-
-    mostrarProducto() {
-        alert("El producto seleccionado es " + this.nombre + ", el precio es de $" + this.precio + " y hay un stock de " + this.stock + " unidades.");
     }
 }
 
@@ -61,17 +56,18 @@ function renderizarProductos(arreglo){
                 alert("Ingrese un número válido.");
             }
 
-            if(cantidad > producto.stock) {
+            // Agregar producto a Local Storage
+            guardarProductoEnLS(producto, cantidad);
 
-                alert("NO HAY SUFICIENTE STOCK");
-
-            } else {
-
-                // Agregar producto a Local Storage
-                guardarProductoEnLS(producto, cantidad);
-            }
-
-
+            // Agregar notificación de Toastify
+            Toastify({
+                text: "Producto agregado",
+                duration: 2000,
+                className: "info",
+                style: {
+                  background: "linear-gradient(to right, #00b09b, #96c93d)",
+                }
+              }).showToast();
         });
 
         divBotones.append(button, inputCantidad);
@@ -250,16 +246,15 @@ function renderizarProductos(arreglo){
             carrito = [];
 
             localStorage.setItem("carrito", JSON.stringify(carrito));
-    
+
+            // Mostrar alerta de Sweet Alert
+            Swal.fire({
+                title: "¡Muchas gracias por su compra!",
+                text: "En breve le estará llegando un mail para seguir su pedido.",
+                icon: "success"
+              });
+
             renderizarCarrito(carrito);
-
-            // mostrar el modal
-            const modal = new bootstrap.Modal(document.getElementById('modalFinalizarCompra'));
-            modal.show();
-
-            document.getElementById('cerrarModal').addEventListener('click', () => {
-                modal.hide();
-            });
         });
     }
     
@@ -388,12 +383,12 @@ function renderizarProductos(arreglo){
     }
 
 const tortas = [
-        new Producto("Torta Block", 1450, 5, "./resources/block.jpg", "Torta Block"),
-        new Producto("Torta Cadbury", 1350, 8, "./resources/cadbury.jpg", "Torta Cadbury"),
-        new Producto("Chocotorta", 1250, 6, "./resources/chocotorta.jpg", "Chocotorta"),
-        new Producto("Cheesecake", 1150, 9, "./resources/cheesecake.jpg", "Cheesecake"),
-        new Producto("Torta Alimonada", 1450, 4, "./resources/alimonada.jpg", "Torta Alimonada"),
-        new Producto("Torta Snickers", 1550, 10, "./resources/snickers.jpg", "Torta Snickers"),
+        new Producto("Torta Block", 1450, "./resources/block.jpg", "Torta Block"),
+        new Producto("Torta Cadbury", 1350, "./resources/cadbury.jpg", "Torta Cadbury"),
+        new Producto("Chocotorta", 1250, "./resources/chocotorta.jpg", "Chocotorta"),
+        new Producto("Cheesecake", 1150, "./resources/cheesecake.jpg", "Cheesecake"),
+        new Producto("Torta Alimonada", 1450, "./resources/alimonada.jpg", "Torta Alimonada"),
+        new Producto("Torta Snickers", 1550, "./resources/snickers.jpg", "Torta Snickers"),
     ];
     
     let carrito = [];
