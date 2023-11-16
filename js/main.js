@@ -39,7 +39,7 @@ function renderizarProductos(arreglo){
 
         const button = document.createElement("button");
         button.className = "btn__product";
-        button.innerText = "AÑADIR AL CARRITO"
+        button.innerText = "COMPRAR"
 
         const inputCantidad = document.createElement("input");
         inputCantidad.type = "number";
@@ -106,7 +106,7 @@ function renderizarProductos(arreglo){
 
         divBotones.append(button, inputCantidad);
         infoProductos.append(h2, p, divBotones);
-        divPadre.append(imgProducto,infoProductos,botonFavoritos);
+        divPadre.append(imgProducto,botonFavoritos,infoProductos);
 
         contenedor.append(divPadre);
 
@@ -293,7 +293,7 @@ function renderizarProductos(arreglo){
         }
     }
 
-    function finalizarCompra(productosCarrito){
+    function finalizarCompra(){
         const botonFinalizarCompra = document.getElementById("finalizarCompra");
         botonFinalizarCompra.className = "btn btn-danger";
 
@@ -352,13 +352,12 @@ function renderizarProductos(arreglo){
             tdPrecio.innerText = `$${productoCarrito.precio}`;
 
             const tdCantidad = document.createElement("td");
-            tdCantidad.innerText = productoCarrito.cantidad;
+            tdCantidad.innerText = `x${productoCarrito.cantidad}`;
 
             const tdEliminar = document.createElement("td");
 
             const botonEliminar = document.createElement("button");
-            botonEliminar.className = "btn btn-sm btn-danger ";
-            botonEliminar.innerText = "ELIMINAR";
+            botonEliminar.className = "fa-solid fa-trash-can";
 
             botonEliminar.addEventListener("click", () => {
                 eliminarProducto(productoCarrito);
@@ -402,19 +401,19 @@ function renderizarProductos(arreglo){
             const tdPrecio = document.createElement("td");
             tdPrecio.innerText = `$${productoFavoritos.precio}`;
 
-            const tdEliminar = document.createElement("td");
+            const tdVerProducto = document.createElement("td");
 
-            const botonEliminar = document.createElement("button");
-            botonEliminar.className = "fa-solid fa-trash-can";
+            const botonVerProducto = document.createElement("button");
+            botonVerProducto.className = "bi bi-bag-plus-fill";
 
-            botonEliminar.addEventListener("click", () => {
-                eliminarProductoFavoritos(productoFavoritos);
+            botonVerProducto.addEventListener("click", () => {
+                // eliminarProductoFavoritos(productoFavoritos);
             });
 
 
             tdImagen.append(tdImagenProducto);
-            tdEliminar.append(botonEliminar);
-            tr.append(tdImagen, tdNombre, tdPrecio, tdEliminar);
+            tdVerProducto.append(botonVerProducto);
+            tr.append(tdImagen, tdNombre, tdPrecio, tdVerProducto);
 
             tbody.append(tr);
         }

@@ -16,26 +16,9 @@
     overflow-y: auto;
   }
 
- .bi-suit-heart,
- .bi-suit-heart-fill{
-    font-size: 1.5rem;
-    display: inline;
-    background: #fff;
-    color: $primarioOscuro;
-    position: relative;
-    bottom: 433px;
-    left: 245px;
-    padding: 5px 10px;
-    border-radius: 100%;
-    cursor: pointer;
-    transition: all .42s ease;
-  }
 
-  .bi-suit-heart:hover{
-    background-color: $primarioClaro;
-  }
-
-  .fa-trash-can{
+  .fa-trash-can,
+  .bi-bag-plus-fill{
     font-size: 1.5rem;
     color: #fff;
     background-color: $primarioOscuro;
@@ -45,12 +28,12 @@
     transition: all .42s ease;
   }
 
-  .fa-trash-can:hover{
+  .fa-trash-can:hover,
+  .bi-bag-plus-fill:hover{
     color: $primarioOscuro;
     background-color: #fff;
     border: 1px solid $primarioOscuro;
   }
-  
 
   @media screen and (max-width: 460px){
     .container__favoritos{

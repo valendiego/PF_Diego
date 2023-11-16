@@ -539,10 +539,15 @@ footer .footer__copy {
   font-size: 1.3rem;
 }
 
+.imagen__productos {
+  position: relative;
+}
+
 .img__products {
   max-width: 100%;
   width: 100%;
   height: 250px;
+  position: relative;
   object-fit: cover;
   border-radius: 10px 0 0 0;
   transition: all 0.42s ease;
@@ -612,6 +617,25 @@ footer .footer__copy {
 
 .products article {
   overflow: hidden;
+}
+
+.bi-suit-heart,
+.bi-suit-heart-fill {
+  font-size: 1.4rem;
+  background: #fff;
+  float: right;
+  color: #C78283;
+  border: 1px solid #C78283;
+  padding: 5px 10px;
+  border-radius: 100%;
+  cursor: pointer;
+  margin: 10px;
+  transition: all 0.42s ease;
+}
+
+.bi-suit-heart:hover,
+.bi-suit-heart-fill:hover {
+  transform: scale(1.1);
 }
 
 /*TORTAS/PASTISSERIE/BRUNCH/NOVEDADES*/
@@ -933,26 +957,8 @@ footer .footer__copy {
   overflow-y: auto;
 }
 
-.bi-suit-heart,
-.bi-suit-heart-fill {
-  font-size: 1.5rem;
-  display: inline;
-  background: #fff;
-  color: #C78283;
-  position: relative;
-  bottom: 433px;
-  left: 245px;
-  padding: 5px 10px;
-  border-radius: 100%;
-  cursor: pointer;
-  transition: all 0.42s ease;
-}
-
-.bi-suit-heart:hover {
-  background-color: #F3D9DC;
-}
-
-.fa-trash-can {
+.fa-trash-can,
+.bi-bag-plus-fill {
   font-size: 1.5rem;
   color: #fff;
   background-color: #C78283;
@@ -962,7 +968,8 @@ footer .footer__copy {
   transition: all 0.42s ease;
 }
 
-.fa-trash-can:hover {
+.fa-trash-can:hover,
+.bi-bag-plus-fill:hover {
   color: #C78283;
   background-color: #fff;
   border: 1px solid #C78283;
