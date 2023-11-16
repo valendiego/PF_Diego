@@ -402,8 +402,7 @@ function renderizarProductos(arreglo){
             const tdEliminar = document.createElement("td");
 
             const botonEliminar = document.createElement("button");
-            botonEliminar.className = "btn btn-sm btn-danger ";
-            botonEliminar.innerText = "x";
+            botonEliminar.className = "fa-solid fa-trash-can";
 
             botonEliminar.addEventListener("click", () => {
                 eliminarProductoFavoritos(productoFavoritos);

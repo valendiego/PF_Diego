@@ -951,6 +951,22 @@ footer .footer__copy {
   background-color: #F3D9DC;
 }
 
+.fa-trash-can {
+  font-size: 1.5rem;
+  color: #fff;
+  background-color: #C78283;
+  padding: 10px;
+  border: 1px solid #C78283;
+  border-radius: 5px;
+  transition: all 0.42s ease;
+}
+
+.fa-trash-can:hover {
+  color: #C78283;
+  background-color: #fff;
+  border: 1px solid #C78283;
+}
+
 @media screen and (max-width: 460px) {
   .container__favoritos {
     width: 100%;
