@@ -81,24 +81,27 @@ function renderizarProductos(arreglo){
             // Obtenemos la cantidad del input
             const cantidad = inputCantidad.value;
 
-            if(cantidad < 1){
-                alert("Ingrese un número válido.");
-            }
-
-            // Agregar producto a Local Storage
-            guardarProductoEnLS(producto, cantidad);
-
-            // Agregar notificación de Toastify
-            Toastify({
-                text: "Producto agregado",
-                duration: 2000,
-                gravity: "bottom",
-                position: "left",
-                className: "info",
-                style: {
-                  background: "linear-gradient(to right, #00b09b, #96c93d)",
-                }
-              }).showToast();
+            if(cantidad >= 1){
+                // Agregar producto a Local Storage
+                guardarProductoEnLS(producto, cantidad);
+                // Agregar notificación de Toastify
+                Toastify({
+                    text: "Producto agregado",
+                    duration: 2000,
+                    gravity: "bottom",
+                    position: "left",
+                    className: "info",
+                    style: {
+                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                    }
+                }).showToast();
+            } else{
+                Swal.fire({
+                    icon: "error",
+                    title: "Cantidad incorrecta",
+                    text: "Ingrese un número válido."
+                  });
+            }            
         });
 
         divBotones.append(button, inputCantidad);
