@@ -67,15 +67,17 @@ nav {
 
 .nav__icon {
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.nav__icon a,
+#fav__icon,
 #carrito__icon {
   margin: 0 10px;
   font-size: 1.5rem;
 }
 
-.nav__icon i,
+#fav__icon,
 #carrito__icon {
   font-size: 3rem;
   color: #C78283;
@@ -84,12 +86,13 @@ nav {
   cursor: pointer;
 }
 
-.nav__icon i:hover,
+#fav__icon:hover,
 #carrito__icon:hover {
   color: #fff;
+  transform: scale(1.1);
 }
 
-.nav__icon .bi-person-fill {
+#fav__icon {
   font-size: 3rem;
   padding-right: 1.8rem;
   border-right: 1px solid rgba(199, 130, 131, 0.2196078431);
@@ -296,15 +299,15 @@ nav {
   .logo img {
     width: 120px;
   }
-  .nav__icon a,
+  #fav__icon,
   #carrito__icon {
     margin: 0px;
   }
-  .nav__icon i,
+  #fav__icon,
   #carrito__icon {
     font-size: 2rem;
   }
-  .nav__icon .bi-person-fill {
+  #fav__icon {
     font-size: 2rem;
     padding-right: 0.2rem;
   }
@@ -320,11 +323,11 @@ nav {
   .logo img {
     width: 150px;
   }
-  .nav__icon a,
+  #fav__icon,
   #carrito__icon {
     margin: 3px;
   }
-  .nav__icon .bi-person-fill {
+  #fav__icon {
     padding-right: 0.6rem;
   }
   .container__search form input {
@@ -335,8 +338,8 @@ nav {
   .logo img {
     width: 170px;
   }
-  .nav__icon .bi-person-fill {
-    padding-right: 0.8rem;
+  #fav__icon {
+    padding-right: 0.6rem;
   }
   .container__search form input {
     width: 15rem;
@@ -357,14 +360,14 @@ nav {
   .container__sop p {
     font-size: 0.8rem;
   }
-  .nav__icon i,
+  #fav__icon,
   #carrito__icon {
     margin: 0 5px;
     font-size: 2.5rem;
   }
-  .nav__icon .bi-person-fill {
+  #fav__icon {
     font-size: 2.5rem;
-    padding-right: 1rem;
+    padding-right: 0.8rem;
   }
 }
 @media screen and (min-width: 1080px) {
@@ -377,17 +380,17 @@ nav {
   .container__sop p {
     font-size: 1rem;
   }
-  .nav__icon a,
+  #fav__icon,
   #carrito__icon {
     font-size: 1.5rem;
   }
-  .nav__icon i,
+  #fav__icon,
   #carrito__icon {
     font-size: 3rem;
   }
-  .nav__icon .bi-person-fill {
+  #fav__icon {
     font-size: 3rem;
-    padding-right: 1.8rem;
+    padding-right: 1.1rem;
   }
   .container__navbar {
     display: flex;
@@ -809,7 +812,8 @@ footer .footer__copy {
   color: #C78283;
 }
 
-.carrito__vacio {
+.carrito__vacio,
+.vacio {
   font-size: 1.5rem;
   color: #777;
   padding: 30px;
@@ -863,10 +867,11 @@ footer .footer__copy {
   position: relative;
   border: 2px solid #C78283;
   right: 25px;
-  top: 6px;
+  bottom: 15px;
 }
 
-#carritoLleno {
+#carritoLleno,
+.lleno {
   font-size: 1.7rem;
   color: #2c2c2c;
   padding: 10px;
@@ -896,7 +901,8 @@ footer .footer__copy {
   #contadorCarrito {
     font-size: 0.7rem;
     padding: 0px 5px;
-    position: static;
+    position: relative;
+    left: 1px;
   }
 }
 @media screen and (min-width: 700px) and (max-width: 1079px) {
@@ -905,6 +911,48 @@ footer .footer__copy {
     padding: 0px 5px;
     position: relative;
     right: 20px;
-    top: 6px;
+    bottom: 13px;
+  }
+}
+.container__favoritos {
+  position: fixed;
+  top: 0;
+  right: -460px;
+  width: 460px;
+  height: 100vh;
+  background-color: #fff;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  transition: all 0.5s ease;
+  z-index: 1;
+  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+}
+
+.bi-suit-heart,
+.bi-suit-heart-fill {
+  font-size: 1.5rem;
+  display: inline;
+  background: #fff;
+  color: #C78283;
+  position: relative;
+  bottom: 433px;
+  left: 245px;
+  padding: 5px 10px;
+  border-radius: 100%;
+  cursor: pointer;
+  transition: all 0.42s ease;
+}
+
+.bi-suit-heart:hover {
+  background-color: #F3D9DC;
+}
+
+@media screen and (max-width: 460px) {
+  .container__favoritos {
+    width: 100%;
   }
 }/*# sourceMappingURL=styles.css.map */

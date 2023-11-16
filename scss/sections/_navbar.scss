@@ -52,15 +52,17 @@ header {
 
   .nav__icon{
     display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
-  .nav__icon a,
+  #fav__icon,
   #carrito__icon {
     margin: 0 10px;
     font-size: 1.5rem;
   }
   
-  .nav__icon i,
+  #fav__icon,
   #carrito__icon{
     font-size: 3rem;
     color: #C78283;
@@ -69,12 +71,13 @@ header {
     cursor: pointer;
   }
   
-  .nav__icon i:hover,
+  #fav__icon:hover,
   #carrito__icon:hover {
     color: #fff;
+    transform: scale(1.1);
   }
   
-  .nav__icon .bi-person-fill {
+  #fav__icon {
     font-size: 3rem;
     padding-right: 1.8rem;
     border-right: 1px solid rgba(199, 130, 131, 0.2196078431);
@@ -287,17 +290,17 @@ header {
       width: 120px;
     }
 
-    .nav__icon a,
+    #fav__icon,
     #carrito__icon {
       margin: 0px;
     }
 
-    .nav__icon i,
+    #fav__icon,
     #carrito__icon {
       font-size: 2rem;
     }
 
-    .nav__icon .bi-person-fill {
+    #fav__icon {
       font-size: 2rem;
       padding-right: 0.2rem;
     }
@@ -317,12 +320,12 @@ header {
       width: 150px;
     }
 
-    .nav__icon a,
+    #fav__icon,
     #carrito__icon {
       margin: 3px;
     }
 
-    .nav__icon .bi-person-fill {
+    #fav__icon {
       padding-right: 0.6rem;
     }
 
@@ -336,8 +339,8 @@ header {
       width: 170px;
     }
 
-    .nav__icon .bi-person-fill {
-      padding-right: 0.8rem;
+    #fav__icon {
+      padding-right: 0.6rem;
     }
   
     .container__search form input {
@@ -364,15 +367,15 @@ header {
       font-size: 0.8rem;
     }
     
-    .nav__icon i,
+    #fav__icon,
     #carrito__icon {
       margin: 0 5px;
       font-size: 2.5rem;
     }
 
-    .nav__icon .bi-person-fill {
+    #fav__icon {
       font-size: 2.5rem;
-      padding-right: 1rem;
+      padding-right: 0.8rem;
     }
   }
 
@@ -389,19 +392,19 @@ header {
       font-size: 1rem;
     }
     
-    .nav__icon a,
+    #fav__icon,
     #carrito__icon {
       font-size: 1.5rem;
     }
 
-    .nav__icon i,
+    #fav__icon,
     #carrito__icon {
       font-size: 3rem;
     }
 
-    .nav__icon .bi-person-fill {
+    #fav__icon {
       font-size: 3rem;
-      padding-right: 1.8rem;
+      padding-right: 1.1rem;
     }
 
     .container__navbar {

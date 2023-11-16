@@ -61,7 +61,8 @@
 }
 
 
-.carrito__vacio{
+.carrito__vacio,
+.vacio{
   font-size: 1.5rem;
   color: #777;
   padding: 30px;
@@ -116,10 +117,11 @@
   position: relative;
   border: 2px solid $primarioOscuro;
   right: 25px;
-  top: 6px;
+  bottom: 15px;
 }
 
-#carritoLleno{
+#carritoLleno,
+.lleno{
   font-size: 1.7rem;
   color: #2c2c2c;
   padding: 10px;
@@ -152,7 +154,8 @@
   #contadorCarrito{
     font-size: 0.7rem;
     padding: 0px 5px;
-    position: static;
+    position: relative; 
+    left: 1px;
   }
 }
 
@@ -162,6 +165,6 @@
     padding: 0px 5px;
     position: relative;
     right: 20px;
-    top: 6px;
+    bottom: 13px;
   }
 }

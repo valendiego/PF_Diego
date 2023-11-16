@@ -1,10 +1,11 @@
 
 class Producto {
-    constructor(nombre, precio, imagen, descripcionImagen) {
+    constructor(nombre, precio, imagen, descripcionImagen, favorito) {
         this.nombre = nombre;
         this.precio = precio;
         this.imagen = imagen;
         this.descripcionImagen = descripcionImagen;
+        this.favorito = false;
     }
 }
 
@@ -46,6 +47,34 @@ function renderizarProductos(arreglo){
         inputCantidad.value = 1;
         inputCantidad.min = 1;
 
+        const botonFavoritos = document.createElement("div");
+        botonFavoritos.className = producto.favorito ? "bi-suit-heart-fill" : "bi-suit-heart";
+
+
+        // Agregar a favoritos
+        botonFavoritos.addEventListener("click", () => {
+            if (producto.favorito) {
+                eliminarProductoFavoritos(producto);
+            } else {
+                guardarProductoEnLSFavoritos(producto);
+            }
+            producto.favorito = !producto.favorito; // Alternar estado de favorito
+            cambiarClasesCorazon(botonFavoritos, producto.favorito);
+
+            Toastify({
+                text: producto.favorito ? "Agregado a favoritos" : "Eliminado de favoritos",
+                duration: 2000,
+                gravity: "bottom",
+                position: "left",
+                className: "info",
+                style: {
+                    background:  "linear-gradient(to right, #bf5959, #cb8f8f)",
+                }
+            }).showToast();
+        });
+        // Modificar clases según si está en favoritos o no
+
+        
         // Agregar al carrito
         button.addEventListener("click", () => {
 
@@ -63,6 +92,8 @@ function renderizarProductos(arreglo){
             Toastify({
                 text: "Producto agregado",
                 duration: 2000,
+                gravity: "bottom",
+                position: "left",
                 className: "info",
                 style: {
                   background: "linear-gradient(to right, #00b09b, #96c93d)",
@@ -72,7 +103,7 @@ function renderizarProductos(arreglo){
 
         divBotones.append(button, inputCantidad);
         infoProductos.append(h2, p, divBotones);
-        divPadre.append(imgProducto,infoProductos);
+        divPadre.append(imgProducto,infoProductos,botonFavoritos);
 
         contenedor.append(divPadre);
 
@@ -149,7 +180,7 @@ function renderizarProductos(arreglo){
 
         } else {
             vacio.classList.remove("d-none");
-}
+        }
     }
 
     function carritoLleno(){
@@ -163,6 +194,35 @@ function renderizarProductos(arreglo){
             lleno.classList.remove("d-none");
         }
     }
+
+    function favoritosVacio(){
+        let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+        const vacio = document.getElementById("favoritosVacio");
+        vacio.className = "vacio";
+
+        if(favoritos.length > 0){
+            vacio.classList.add("d-none"); 
+
+        } else {
+            vacio.classList.remove("d-none");
+        }
+    }
+
+    function favoritosLleno(){
+        let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+        const lleno = document.getElementById("favoritosLleno");
+        lleno.className = "lleno";
+        
+        if(favoritos.length <= 0){
+            lleno.classList.add("d-none");
+
+
+        } else {
+            lleno.classList.remove("d-none");
+        }
+    }
+
+    
 
     function calcularSubtotalCarrito(productosCarrito){
         const subtotal = productosCarrito.reduce((acc,producto) =>{
@@ -314,7 +374,65 @@ function renderizarProductos(arreglo){
         
         carritoVacio();
     }
+
+    function renderizarFavoritos(productosFavoritos){
+
+        favoritosLleno();
+
+        const tbody = document.querySelector("#favoritos table tbody");
+        tbody.innerHTML = "";
+
+        for (const productoFavoritos of productosFavoritos){
+
+            const tr = document.createElement("tr");
+
+            const tdImagen = document.createElement("td");
+
+            const tdImagenProducto = document.createElement("img");
+            tdImagenProducto.className = "imagen__carrito";
+            tdImagenProducto.setAttribute("src", productoFavoritos.imagen);
+            tdImagenProducto.setAttribute("alt", productoFavoritos.descripcionImagen);
+
+            const tdNombre = document.createElement("td");
+            tdNombre.innerText = productoFavoritos.nombre;
+
+            const tdPrecio = document.createElement("td");
+            tdPrecio.innerText = `$${productoFavoritos.precio}`;
+
+            const tdEliminar = document.createElement("td");
+
+            const botonEliminar = document.createElement("button");
+            botonEliminar.className = "btn btn-sm btn-danger ";
+            botonEliminar.innerText = "x";
+
+            botonEliminar.addEventListener("click", () => {
+                eliminarProductoFavoritos(productoFavoritos);
+            });
+
+
+            tdImagen.append(tdImagenProducto);
+            tdEliminar.append(botonEliminar);
+            tr.append(tdImagen, tdNombre, tdPrecio, tdEliminar);
+
+            tbody.append(tr);
+        }
+        
+        favoritosVacio();
+    }
     
+    function cambiarClasesCorazon(botonFavoritos, enFavoritos) {
+        if (botonFavoritos) {
+            if (enFavoritos) {
+                botonFavoritos.classList.remove("bi-suit-heart");
+                botonFavoritos.classList.add("bi-suit-heart-fill");
+            } else {
+                botonFavoritos.classList.remove("bi-suit-heart-fill");
+                botonFavoritos.classList.add("bi-suit-heart");
+            }
+        }
+    }
+
+
     function eliminarProducto(producto) {
 
         // Busco el producto a eliminar del carrito por el nombre
@@ -334,6 +452,26 @@ function renderizarProductos(arreglo){
             renderizarCarrito(carrito);
         }
     }
+
+    function eliminarProductoFavoritos(producto) {
+        let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+        // Busco el producto a eliminar del carrito por el nombre
+        const indiceProductoAEliminar = favoritos.findIndex( (el) => {
+            return producto.nombre === el.nombre;
+        });
+    
+        // Si el índice del producto a eliminar existe
+        if(indiceProductoAEliminar !== -1) {
+    
+            // Elimino el producto del carrito
+            favoritos.splice(indiceProductoAEliminar, 1);
+    
+            // Actualizo localStorage
+            localStorage.setItem("favoritos", JSON.stringify(favoritos));
+    
+            renderizarFavoritos(favoritos);
+        }
+    }
     
     function obtenerProductosEnLS() {
 
@@ -341,6 +479,14 @@ function renderizarProductos(arreglo){
 
         if(carrito) {
             renderizarCarrito(carrito);
+        }
+    }
+
+    function obtenerProductosEnLSFavoritos(){
+        favoritos = JSON.parse(localStorage.getItem("favoritos"));
+
+        if(favoritos) {
+            renderizarFavoritos(favoritos);
         }
     }
 
@@ -382,19 +528,56 @@ function renderizarProductos(arreglo){
     
     }
 
+    function guardarProductoEnLSFavoritos(producto) {
+        let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+
+        const productoAAgregar = {
+            imagen: producto.imagen,
+            descripcionImagen: producto.descripcionImagen,
+            nombre: producto.nombre,
+            precio: producto.precio
+        };
+    
+        // No hay productos en local Storage
+        if(favoritos === null) {
+    
+            favoritos = [productoAAgregar];
+    
+        } else {
+    
+            // Busco el índice del producto en el array del localstorage para editarlo si existe
+            const indiceExisteProducto = favoritos.findIndex( (el) => {
+                return el.nombre === productoAAgregar.nombre;
+            });
+    
+            // Si el producto no existe en el localstorage, lo agrego
+            if(indiceExisteProducto === -1) {
+                favoritos.push(productoAAgregar);
+            }
+        }
+    
+        // Actualizo localStorage
+        localStorage.setItem("favoritos", JSON.stringify(favoritos));
+    
+        renderizarFavoritos(favoritos);
+    
+    }
+
 const tortas = [
-        new Producto("Torta Block", 1450, "./resources/block.jpg", "Torta Block"),
-        new Producto("Torta Cadbury", 1350, "./resources/cadbury.jpg", "Torta Cadbury"),
-        new Producto("Chocotorta", 1250, "./resources/chocotorta.jpg", "Chocotorta"),
-        new Producto("Cheesecake", 1150, "./resources/cheesecake.jpg", "Cheesecake"),
-        new Producto("Torta Alimonada", 1450, "./resources/alimonada.jpg", "Torta Alimonada"),
-        new Producto("Torta Snickers", 1550, "./resources/snickers.jpg", "Torta Snickers"),
+        new Producto("Torta Block", 1450, "./resources/block.jpg", "Torta Block", false),
+        new Producto("Torta Cadbury", 1350, "./resources/cadbury.jpg", "Torta Cadbury", false),
+        new Producto("Chocotorta", 1250, "./resources/chocotorta.jpg", "Chocotorta", false),
+        new Producto("Cheesecake", 1150, "./resources/cheesecake.jpg", "Cheesecake", false),
+        new Producto("Torta Alimonada", 1450, "./resources/alimonada.jpg", "Torta Alimonada", false),
+        new Producto("Torta Snickers", 1550, "./resources/snickers.jpg", "Torta Snickers", false),
     ];
     
     let carrito = [];
+    let favoritos = [];
 
     renderizarProductos(tortas);
     inicializarInput();
     inicializarSelect();
     obtenerProductosEnLS();
+    obtenerProductosEnLSFavoritos();
     console.log(carrito);
