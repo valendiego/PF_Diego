@@ -135,11 +135,27 @@
     overflow: hidden;
 }
 
+.div__botones{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+      .btn__product{
+        padding: 10px 20px;
+        width: 100%;
+      }
+  }
+  
+  .form-control{
+    width: 60px;
+    margin-left:20px;
+  }
+
 .bi-suit-heart,
  .bi-suit-heart-fill{
     font-size: 1.4rem;
     background: #fff;
-    float: right;
+    // float: right;
     color: $primarioOscuro;
     border: 1px solid $primarioOscuro;
     padding: 5px 10px;

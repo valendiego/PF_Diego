@@ -1,23 +1,43 @@
 .container__vista{
-     display: flex;
-    width: 100vw;
-    height: 100vh;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(60, 60, 60, 0.6); /* Fondo oscuro con transparencia */
     justify-content: center;
     align-items: center;
-    background: #3c3c3c5c;
+    z-index: 999; /* Valor alto para estar por encima de otros elementos */
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5); /* Ajusta el último valor para controlar la opacidad */
+    z-index: 999; /* Asegura que esté por encima de los demás elementos */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .vista{
+    max-width: 800px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #fff;
+    z-index: 999;
     padding: 50px;
     border-radius: 40px;
     gap: 30px;
 }
 
-#close{
+#close,
+.bi-x-circle-fill{
         font-size: 1.8rem;
         width: 16px;
         height: 16px;
@@ -64,7 +84,9 @@
 }
 
 #plus,
-#dash{
+#dash,
+.bi-plus-circle-fill,
+.bi-dash-circle-fill{
     color: $primarioOscuro;
     font-size:2rem;
     cursor: pointer;

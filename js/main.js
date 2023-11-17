@@ -1,11 +1,12 @@
 
 class Producto {
-    constructor(nombre, precio, imagen, descripcionImagen, favorito) {
+    constructor(nombre, precio, imagen, descripcionImagen, favorito, descripcion) {
         this.nombre = nombre;
         this.precio = precio;
         this.imagen = imagen;
         this.descripcionImagen = descripcionImagen;
-        this.favorito = false;
+        this.favorito = favorito;
+        this.descripcion = descripcion;
     }
 }
 
@@ -39,17 +40,10 @@ function renderizarProductos(arreglo){
 
         const button = document.createElement("button");
         button.className = "btn__product";
-        button.innerText = "COMPRAR"
-
-        const inputCantidad = document.createElement("input");
-        inputCantidad.type = "number";
-        inputCantidad.className = "form-control";
-        inputCantidad.value = 1;
-        inputCantidad.min = 1;
+        button.innerText = "COMPRAR"       
 
         const botonFavoritos = document.createElement("div");
         botonFavoritos.className = producto.favorito ? "bi-suit-heart-fill" : "bi-suit-heart";
-
 
         // Agregar a favoritos
         botonFavoritos.addEventListener("click", () => {
@@ -72,18 +66,88 @@ function renderizarProductos(arreglo){
                 }
             }).showToast();
         });
-        // Modificar clases según si está en favoritos o no
 
+        button.addEventListener("click", () =>{
+            renderProductoIndividual(producto);
+            mostrarProductoIndividual();
+        });
         
-        // Agregar al carrito
-        button.addEventListener("click", () => {
+
+        divBotones.append(button,botonFavoritos);
+        infoProductos.append(h2, p, divBotones);
+        divPadre.append(imgProducto,infoProductos);
+
+        contenedor.append(divPadre);
+
+
+    }
+}
+
+    function renderProductoIndividual(productoIndividual){
+        const contenedor = document.getElementById("containerIndividual");
+        contenedor.innerHTML = "";
+         // Crear overlay
+        
+            const divPadre = document.createElement("div");
+            divPadre.className = "vista";
+
+            const contenedorImg = document.createElement("div");
+            contenedorImg.className = "container__img";
+
+            const imgIndividual = document.createElement("img");
+            imgIndividual.className = "img__vista";
+            imgIndividual.setAttribute("src", productoIndividual.imagen);
+            imgIndividual.setAttribute("alt", productoIndividual.descripcionImagen);
+
+            const contenedorInfo = document.createElement("div");
+            contenedorInfo.className = "container__info";
+
+            const botonCerrar = document.createElement("div");
+            botonCerrar.className = "bi bi-x-circle-fill";
+
+            const h1 = document.createElement("h1");
+            h1.className = "name__product";
+            h1.innerText = productoIndividual.nombre;
+
+            const p = document.createElement("p");
+            p.className = "descripcion";
+            p.innerText = productoIndividual.descripcion;
+
+            const precio = document.createElement("p");
+            precio.className = "price__product";
+            precio.innerHtml=`<strong>$${productoIndividual.precio}</strong>`;
+
+            const contenedorInput = document.createElement("div");
+            contenedorInput.className = "container__input";
+
+            const agregarCantidad = document.createElement("div");
+            agregarCantidad.className = "bi bi-plus-circle-fill";
+
+            const inputCant = document.createElement("input");
+            inputCant.type = "number";
+            inputCant.className = "input__cantidad";
+            inputCant.value = 1;
+            inputCant.min = 1;
+
+            const quitarCantidad = document.createElement("div");
+            quitarCantidad.className = "bi bi-dash-circle-fill";
+
+            const containerBoton = document.createElement("div");
+            containerBoton.className = "container__button";
+
+            const button = document.createElement("button");
+            button.className = "btn__compra";
+            button.innerText = "AGREGAR AL CARRITO";
+
+            // Agregar al carrito
+            button.addEventListener("click", () => {
 
             // Obtenemos la cantidad del input
-            const cantidad = inputCantidad.value;
+            const cantidad = inputCant.value;
 
             if(cantidad >= 1){
                 // Agregar producto a Local Storage
-                guardarProductoEnLS(producto, cantidad);
+                guardarProductoEnLS(productoIndividual, cantidad);
                 // Agregar notificación de Toastify
                 Toastify({
                     text: "Producto agregado",
@@ -104,15 +168,31 @@ function renderizarProductos(arreglo){
             }            
         });
 
-        divBotones.append(button, inputCantidad);
-        infoProductos.append(h2, p, divBotones);
-        divPadre.append(imgProducto,botonFavoritos,infoProductos);
+            // Cerrar producto
+            botonCerrar.addEventListener("click", () => {
+                limpiarProductoIndividual();
+            });
 
-        contenedor.append(divPadre);
+            containerBoton.append(button);
+            contenedorInput.append(agregarCantidad,inputCant,quitarCantidad);
+            contenedorImg.append(imgIndividual);
+            contenedorInfo.append(botonCerrar,h1,p,precio,contenedorInput,containerBoton);
+            divPadre.append(contenedorImg,contenedorInfo)
+            contenedor.append(divPadre);
 
 
+        console.log("Se renderizo producto individual");
     }
-}
+
+    function limpiarProductoIndividual() {
+        const contenedor = document.getElementById("containerIndividual");
+        contenedor.style.display = "none";
+    }
+
+    function mostrarProductoIndividual() {
+        const contenedor = document.getElementById("containerIndividual");
+        contenedor.style.display = "flex";
+    }
 
     function inicializarInput(){
         const input = document.getElementById("buscarProductos");
@@ -407,7 +487,8 @@ function renderizarProductos(arreglo){
             botonVerProducto.className = "bi bi-bag-plus-fill";
 
             botonVerProducto.addEventListener("click", () => {
-                // eliminarProductoFavoritos(productoFavoritos);
+                renderProductoIndividual(productoFavoritos);
+                mostrarProductoIndividual();
             });
 
 
@@ -565,12 +646,12 @@ function renderizarProductos(arreglo){
     }
 
 const tortas = [
-        new Producto("Torta Block", 1450, "./resources/block.jpg", "Torta Block", false),
-        new Producto("Torta Cadbury", 1350, "./resources/cadbury.jpg", "Torta Cadbury", false),
-        new Producto("Chocotorta", 1250, "./resources/chocotorta.jpg", "Chocotorta", false),
-        new Producto("Cheesecake", 1150, "./resources/cheesecake.jpg", "Cheesecake", false),
-        new Producto("Torta Alimonada", 1450, "./resources/alimonada.jpg", "Torta Alimonada", false),
-        new Producto("Torta Snickers", 1550, "./resources/snickers.jpg", "Torta Snickers", false),
+        new Producto("Torta Block", 1450, "./resources/block.jpg", "Torta Block", false, "Torta de chocolate con base de brownie y ganache de chocolate, recubierta con maní, nueces picadas y topping de Block."),
+        new Producto("Torta Cadbury", 1350, "./resources/cadbury.jpg", "Torta Cadbury", false, "Torta de frutilla con base de bizcochuelo húmedo de chocolate, rellena de mousse de frutilla y recubierta con chocolate semi amargo, con topping de Cadbury."),
+        new Producto("Chocotorta", 1250, "./resources/chocotorta.jpg", "Chocotorta", false, "Torta húmeda hecha a base de chocolinas, rellena de crema y dulce de leche."),
+        new Producto("Cheesecake", 1150, "./resources/cheesecake.jpg", "Cheesecake", false, "Torta hecha a base de queso, vainilla y crema, con una base de galletita de vainilla y topping de frambuesa."),
+        new Producto("Torta Alimonada", 1450, "./resources/alimonada.jpg", "Torta Alimonada", false, "Bizcochuelo húmedo de vainilla y ralladura de limón, rellena de mousse de arándanos y recubierta de frosting de limón y chocolate blanco."),
+        new Producto("Torta Snickers", 1550, "./resources/snickers.jpg", "Torta Snickers", false, "Bizcochuelo húmedo de chocolate relleno de mousse de crema de maní, veteada con toffee y topping de Snickers."),
     ];
     
     let carrito = [];
@@ -581,4 +662,3 @@ const tortas = [
     inicializarSelect();
     obtenerProductosEnLS();
     obtenerProductosEnLSFavoritos();
-    console.log(carrito);
