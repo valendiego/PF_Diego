@@ -44,6 +44,7 @@ function renderizarProductos(arreglo){
 
         const botonFavoritos = document.createElement("div");
         botonFavoritos.className = producto.favorito ? "bi-suit-heart-fill" : "bi-suit-heart";
+        botonFavoritos.setAttribute("data-nombre", producto.nombre);
 
         // Agregar a favoritos
         botonFavoritos.addEventListener("click", () => {
@@ -115,7 +116,7 @@ function renderizarProductos(arreglo){
 
             const precio = document.createElement("p");
             precio.className = "price__product";
-            precio.innerHtml=`<strong>$${productoIndividual.precio}</strong>`;
+            precio.innerHTML=`<strong>$${productoIndividual.precio}</strong>`;
 
             const contenedorInput = document.createElement("div");
             contenedorInput.className = "container__input";
@@ -173,8 +174,21 @@ function renderizarProductos(arreglo){
                 limpiarProductoIndividual();
             });
 
+            // Sumar o restar en el input
+            agregarCantidad.addEventListener("click", () =>{
+                inputCant.value ++;
+            });
+
+            quitarCantidad.addEventListener("click", () =>{
+                if(inputCant.value <= 1){
+                    inputCant = 1;
+                } else{
+                    inputCant.value --;
+                }
+            });
+
             containerBoton.append(button);
-            contenedorInput.append(agregarCantidad,inputCant,quitarCantidad);
+            contenedorInput.append(quitarCantidad,inputCant,agregarCantidad);
             contenedorImg.append(imgIndividual);
             contenedorInfo.append(botonCerrar,h1,p,precio,contenedorInput,containerBoton);
             divPadre.append(contenedorImg,contenedorInfo)
@@ -491,6 +505,17 @@ function renderizarProductos(arreglo){
                 mostrarProductoIndividual();
             });
 
+            document.addEventListener('DOMContentLoaded', () => {
+                const favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+            
+                favoritos.forEach((productoFavorito) => {
+                    const botonFavoritos = document.querySelector(`[data-nombre="${productoFavorito.nombre}"]`);
+            
+                    if (botonFavoritos) {
+                        cambiarClasesCorazon(botonFavoritos, true);
+                    }
+                });
+            });
 
             tdImagen.append(tdImagenProducto);
             tdVerProducto.append(botonVerProducto);
@@ -617,7 +642,9 @@ function renderizarProductos(arreglo){
             imagen: producto.imagen,
             descripcionImagen: producto.descripcionImagen,
             nombre: producto.nombre,
-            precio: producto.precio
+            descripcion: producto.descripcion,
+            precio: producto.precio,
+            favorito: producto.favorito
         };
     
         // No hay productos en local Storage
@@ -627,7 +654,7 @@ function renderizarProductos(arreglo){
     
         } else {
     
-            // Busco el índice del producto en el array del localstorage para editarlo si existe
+            // Busco el índice del aproducto en el array del localstorage para editarlo si existe
             const indiceExisteProducto = favoritos.findIndex( (el) => {
                 return el.nombre === productoAAgregar.nombre;
             });
@@ -647,11 +674,11 @@ function renderizarProductos(arreglo){
 
 const tortas = [
         new Producto("Torta Block", 1450, "./resources/block.jpg", "Torta Block", false, "Torta de chocolate con base de brownie y ganache de chocolate, recubierta con maní, nueces picadas y topping de Block."),
-        new Producto("Torta Cadbury", 1350, "./resources/cadbury.jpg", "Torta Cadbury", false, "Torta de frutilla con base de bizcochuelo húmedo de chocolate, rellena de mousse de frutilla y recubierta con chocolate semi amargo, con topping de Cadbury."),
-        new Producto("Chocotorta", 1250, "./resources/chocotorta.jpg", "Chocotorta", false, "Torta húmeda hecha a base de chocolinas, rellena de crema y dulce de leche."),
-        new Producto("Cheesecake", 1150, "./resources/cheesecake.jpg", "Cheesecake", false, "Torta hecha a base de queso, vainilla y crema, con una base de galletita de vainilla y topping de frambuesa."),
-        new Producto("Torta Alimonada", 1450, "./resources/alimonada.jpg", "Torta Alimonada", false, "Bizcochuelo húmedo de vainilla y ralladura de limón, rellena de mousse de arándanos y recubierta de frosting de limón y chocolate blanco."),
-        new Producto("Torta Snickers", 1550, "./resources/snickers.jpg", "Torta Snickers", false, "Bizcochuelo húmedo de chocolate relleno de mousse de crema de maní, veteada con toffee y topping de Snickers."),
+        new Producto("Torta Cadbury", 1350, "./resources/cadbury.jpg", "Torta Cadbury", false, "Torta de frutilla con base de bizcochuelo húmedo de chocolate rellena de mousse de frutilla, con topping de Cadbury."),
+        new Producto("Chocotorta", 1250, "./resources/chocotorta.jpg", "Chocotorta", false, "Torta húmeda hecha a base de chocolinas rellena de crema y dulce de leche, con topping de dulce de leche."),
+        new Producto("Cheesecake", 1150, "./resources/cheesecake.jpg", "Cheesecake", false, "Torta hecha a base de queso, vainilla y crema, con base de galletita y topping de frambuesa."),
+        new Producto("Torta Alimonada", 1450, "./resources/alimonada.jpg", "Torta Alimonada", false, "Bizcochuelo de vainilla relleno de mousse de arándanos, con topping de limón y chocolate blanco."),
+        new Producto("Torta Snickers", 1550, "./resources/snickers.jpg", "Torta Snickers", false, "Bizcochuelo de chocolate relleno de mousse de crema de maní, veteada con toffee y topping de Snickers."),
     ];
     
     let carrito = [];
