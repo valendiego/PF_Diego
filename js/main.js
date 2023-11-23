@@ -10,6 +10,17 @@ class Producto {
     }
 }
 
+function obtenerProductosDeJSON() {
+    return new Promise((resolve, reject) => {
+       fetch('../productos.json').then((response) => {
+          return response.json();
+       }).then((responseJson) => {
+          productos.push(...responseJson);
+          resolve();
+       });
+    });
+ }
+
 function renderizarProductos(arreglo){
     const contenedor = document.getElementById("contenedor");
     contenedor.innerHTML = "";
@@ -214,7 +225,7 @@ function renderizarProductos(arreglo){
         input.addEventListener("keyup", () => {
             const value = input.value;
 
-            const productosFiltrados = tortas.filter((producto) => {
+            const productosFiltrados = productos.filter((producto) => {
                 return producto
                     .nombre
                     .toLowerCase()
@@ -238,7 +249,7 @@ function renderizarProductos(arreglo){
     }
 
     function ordenarPorPrecioMayor(){
-        const productosMenorPrecio = tortas.sort((productoA, productoB) => {
+        const productosMenorPrecio = productos.sort((productoA, productoB) => {
             if(productoA.precio < productoB.precio){
                 return 1;
             } else if (productoA.precio > productoB.precio){
@@ -672,20 +683,16 @@ function renderizarProductos(arreglo){
     
     }
 
-const tortas = [
-        new Producto("Torta Block", 1450, "./resources/block.jpg", "Torta Block", false, "Torta de chocolate con base de brownie y ganache de chocolate, recubierta con maní, nueces picadas y topping de Block."),
-        new Producto("Torta Cadbury", 1350, "./resources/cadbury.jpg", "Torta Cadbury", false, "Torta de frutilla con base de bizcochuelo húmedo de chocolate rellena de mousse de frutilla, con topping de Cadbury."),
-        new Producto("Chocotorta", 1250, "./resources/chocotorta.jpg", "Chocotorta", false, "Torta húmeda hecha a base de chocolinas rellena de crema y dulce de leche, con topping de dulce de leche."),
-        new Producto("Cheesecake", 1150, "./resources/cheesecake.jpg", "Cheesecake", false, "Torta hecha a base de queso, vainilla y crema, con base de galletita y topping de frambuesa."),
-        new Producto("Torta Alimonada", 1450, "./resources/alimonada.jpg", "Torta Alimonada", false, "Bizcochuelo de vainilla relleno de mousse de arándanos, con topping de limón y chocolate blanco."),
-        new Producto("Torta Snickers", 1550, "./resources/snickers.jpg", "Torta Snickers", false, "Bizcochuelo de chocolate relleno de mousse de crema de maní, veteada con toffee y topping de Snickers."),
-    ];
+const productos = [];
     
     let carrito = [];
     let favoritos = [];
 
-    renderizarProductos(tortas);
+
     inicializarInput();
     inicializarSelect();
     obtenerProductosEnLS();
     obtenerProductosEnLSFavoritos();
+    obtenerProductosDeJSON().then(() => {
+        renderizarProductos(productos);
+     });

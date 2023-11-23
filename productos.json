@@ -1,0 +1,50 @@
+[
+    {
+        "nombre": "Torta Block",
+        "precio": 1450,
+        "imagen": "./resources/block.jpg",
+        "descripcionImagen": "Torta Block",
+        "favorito": false,
+        "descripcion": "Torta de chocolate con base de brownie y ganache de chocolate, recubierta con maní, nueces picadas y topping de Block."
+    },
+    {
+        "nombre": "Torta Cadbury",
+        "precio": 1350,
+        "imagen": "./resources/cadbury.jpg",
+        "descripcionImagen": "Torta Cadbury",
+        "favorito": false,
+        "descripcion": "Torta de frutilla con base de bizcochuelo húmedo de chocolate rellena de mousse de frutilla, con topping de Cadbury."
+    },
+    {
+        "nombre": "Chocotorta",
+        "precio": 1250,
+        "imagen": "./resources/chocotorta.jpg",
+        "descripcionImagen": "Chocotorta",
+        "favorito": false,
+        "descripcion": "Torta húmeda hecha a base de chocolinas rellena de crema y dulce de leche, con topping de dulce de leche."
+    },
+    {
+        "nombre": "Cheesecake",
+        "precio": 1150,
+        "imagen": "./resources/cheesecake.jpg",
+        "descripcionImagen": "Cheesecake",
+        "favorito": false,
+        "descripcion": "Torta hecha a base de queso, vainilla y crema, con base de galletita y topping de frambuesa."
+    },
+    {
+        "nombre": "Torta Alimonada",
+        "precio": 1450,
+        "imagen": "./resources/alimonada.jpg",
+        "descripcionImagen": "Torta Alimonada",
+        "favorito": false,
+        "descripcion": "Bizcochuelo de vainilla relleno de mousse de arándanos, con topping de limón y chocolate blanco."
+    },
+    {
+        "nombre": "Torta Snickers",
+        "precio": 1550,
+        "imagen": "./resources/snickers.jpg",
+        "descripcionImagen": "Torta Snickers",
+        "favorito": false,
+        "descripcion": "Bizcochuelo de chocolate relleno de mousse de crema de maní, veteada con toffee y topping de Snickers."
+    }
+]
