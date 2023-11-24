@@ -238,7 +238,7 @@ function renderizarProductos(arreglo){
     }
 
     function ordenarPorPrecioMenor(){
-        const productosMayorPrecio = tortas.sort((productoA, productoB) => {
+        const productosMayorPrecio = productos.sort((productoA, productoB) => {
             if(productoA.precio > productoB.precio){
                 return 1;
             } else if (productoA.precio < productoB.precio){
