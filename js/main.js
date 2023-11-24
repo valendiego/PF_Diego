@@ -11,15 +11,17 @@ class Producto {
 }
 
 function obtenerProductosDeJSON() {
-    return new Promise((resolve, reject) => {
-       fetch('../productos.json').then((response) => {
-          return response.json();
-       }).then((responseJson) => {
-          productos.push(...responseJson);
-          resolve();
-       });
-    });
- }
+   return new Promise((resolve, reject) => {
+      fetch('../productos.json').then((response) => {
+         return response.json();
+      }).then((responseJson) => {
+         for (const producto of responseJson) {
+            productos.push(new Producto(...producto));
+         }
+         resolve();
+      });
+   });
+}
 
 function renderizarProductos(arreglo){
     const contenedor = document.getElementById("contenedor");
@@ -683,7 +685,7 @@ function renderizarProductos(arreglo){
     
     }
 
-const productos = [];
+    const productos = [];
     
     let carrito = [];
     let favoritos = [];
