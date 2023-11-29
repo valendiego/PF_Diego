@@ -2,7 +2,7 @@
     [
         "Torta Block",
         1450,
-        "./resources/block.jpg",
+        "../resources/block.jpg",
         "Torta Block",
         false,
         "Torta de chocolate con base de brownie y ganache de chocolate, recubierta con maní, nueces picadas y topping de Block."
@@ -10,7 +10,7 @@
     [
         "Torta Cadbury",
         1350,
-        "./resources/cadbury.jpg",
+        "../resources/cadbury.jpg",
         "Torta Cadbury",
         false,
         "Torta de frutilla con base de bizcochuelo húmedo de chocolate rellena de mousse de frutilla, con topping de Cadbury."
@@ -18,7 +18,7 @@
     [
         "Chocotorta",
         1250,
-        "./resources/chocotorta.jpg",
+        "../resources/chocotorta.jpg",
         "Chocotorta",
         false,
         "Torta húmeda hecha a base de chocolinas rellena de crema y dulce de leche, con topping de dulce de leche."
@@ -26,7 +26,7 @@
     [
         "Cheesecake",
         1150,
-        "./resources/cheesecake.jpg",
+        "../resources/cheesecake.jpg",
         "Cheesecake",
         false,
         "Torta hecha a base de queso, vainilla y crema, con base de galletita y topping de frambuesa."
@@ -34,7 +34,7 @@
     [
         "Torta Alimonada",
         1450,
-        "./resources/alimonada.jpg",
+        "../resources/alimonada.jpg",
         "Torta Alimonada",
         false,
         "Bizcochuelo de vainilla relleno de mousse de arándanos, con topping de limón y chocolate blanco."
@@ -42,7 +42,7 @@
     [
         "Torta Snickers",
         1550,
-        "./resources/snickers.jpg",
+        "../resources/snickers.jpg",
         "Torta Snickers",
         false,
         "Bizcochuelo de chocolate relleno de mousse de crema de maní, veteada con toffee y topping de Snickers."

@@ -1,0 +1,50 @@
+[
+    [
+        "Macaroons",
+        2050,
+        "../resources/macaroon.jpg",
+        "Macaroons",
+        false,
+        "Macaroons surtidos x6 unidades (variedad de chocolate, vainilla, frutilla, almendras y limón)."
+    ],
+    [
+        "Alfacookies",
+        1050,
+        "../resources/alfajores.jpg",
+        "Alfacookies",
+        false,
+        "Galletita de vainilla con chips de choco y dulce de leche x6 unidades."
+    ],
+    [
+        "Alfajores artesanales",
+        1890,
+        "../resources/alfajores2.jpg",
+        "Alfajores artesanales",
+        false,
+        "Alfajores surtidos x6 unidades (variedad de chocolate semi amargo, chocolate blanco y glaseado)."
+    ],
+    [
+        "Alfajorcitos almendrados",
+        950,
+        "../resources/alfajors3.jpg",
+        "Alfajorcitos almendrados",
+        false,
+        "Alfajorcitos de almendras rellenos con dulce de leche x6 unidades."
+    ],
+    [
+        "Churros",
+        1250,
+        "../resources/churros.jpg",
+        "Churros",
+        false,
+        "Churros surtidos x6 unidades (variedad de rellenos con dulce de leche y bañados en chocolate)."
+    ],
+    [
+        "Brownie Oreo",
+        1550,
+        "../resources/brownie.jpg",
+        "Brownie Oreo",
+        false,
+        "Cuadrado húmedo de brownie de chocolate con galletitas oreo."
+    ]
+]

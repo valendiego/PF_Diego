@@ -12,7 +12,7 @@ class Producto {
 
 function obtenerProductosDeJSON() {
    return new Promise((resolve, reject) => {
-      fetch('../productos.json').then((response) => {
+      fetch('../brunch.json').then((response) => {
          return response.json();
       }).then((responseJson) => {
          for (const producto of responseJson) {
