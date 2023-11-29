@@ -1,107 +1,175 @@
-
-class Producto {
-    constructor(nombre, precio, imagen, descripcionImagen, favorito, descripcion) {
-        this.nombre = nombre;
-        this.precio = precio;
-        this.imagen = imagen;
-        this.descripcionImagen = descripcionImagen;
-        this.favorito = favorito;
-        this.descripcion = descripcion;
+//FUNCIONES
+//Clase constructora de los productos
+    class Producto {
+        constructor(nombre, precio, imagen, descripcionImagen, favorito, descripcion) {
+            this.nombre = nombre;
+            this.precio = precio;
+            this.imagen = imagen;
+            this.descripcionImagen = descripcionImagen;
+            this.favorito = favorito;
+            this.descripcion = descripcion;
+        }
     }
-}
 
-function obtenerProductosDeJSON() {
-   return new Promise((resolve, reject) => {
-      fetch('../brunch.json').then((response) => {
-         return response.json();
-      }).then((responseJson) => {
-         for (const producto of responseJson) {
-            productos.push(new Producto(...producto));
-         }
-         resolve();
-      });
-   });
-}
+    function obtenerProductosDeJSON() {
+    return new Promise((resolve, reject) => {
+        fetch('../brunch.json').then((response) => {
+            return response.json();
+        }).then((responseJson) => {
+            for (const producto of responseJson) {
+                productos.push(new Producto(...producto));
+            }
+            resolve();
+        });
+    });
+    }
 
-function renderizarProductos(arreglo){
-    const contenedor = document.getElementById("contenedor");
-    contenedor.innerHTML = "";
-
-    for(const producto of arreglo){
-
-        const divPadre = document.createElement("div");
-        divPadre.className = "products";
-
-        const imgProducto = document.createElement("img");
-        imgProducto.className = "img__products";
-        imgProducto.setAttribute("src", producto.imagen);
-        imgProducto.setAttribute("alt", producto.descripcionImagen);
-
-        const infoProductos = document.createElement("div");
-        infoProductos.className = "info__products";
-
-        const h2 = document.createElement("h2");
-        h2.className = "name__product";
-        h2.innerText = producto.nombre;
-
-        const p = document.createElement("p");
-        p.className = "price";
-        p.innerHTML = `<strong>$${producto.precio}</strong>`;
-
-        const divBotones = document.createElement("div");
-        divBotones.className = "div__botones";
-
-        const button = document.createElement("button");
-        button.className = "btn__product";
-        button.innerText = "COMPRAR"       
-
-        const botonFavoritos = document.createElement("div");
-        botonFavoritos.className = "fa-solid fa-heart-circle-plus";
-
-        // Agregar a favoritos
-        botonFavoritos.addEventListener("click", () => {
-            if (producto.favorito === true) {
-                Toastify({
-                    text: "Este producto ya está en favoritos",
-                    duration: 2000,
-                    gravity: "bottom",
-                    position: "left",
-                    className: "info",
-                    style: {
-                        background:  "linear-gradient(to right, #bf5959, #cb8f8f)",
-                    }
-                }).showToast();
-            } else {
-                guardarProductoEnLSFavoritos(producto);
+    function ordenarPorPrecioMenor(){
+        const productosMayorPrecio = productos.sort((productoA, productoB) => {
+            if(productoA.precio > productoB.precio){
+                return 1;
+            } else if (productoA.precio < productoB.precio){
+                return -1;
             }
 
-            Toastify({
-                text: "Agregado a favoritos",
-                duration: 2000,
-                gravity: "bottom",
-                position: "left",
-                className: "info",
-                style: {
-                    background:  "linear-gradient(to right, #bf5959, #cb8f8f)",
-                }
-            }).showToast();
+            return 0;
         });
-
-        button.addEventListener("click", () =>{
-            renderProductoIndividual(producto);
-            mostrarProductoIndividual();
-        });
-        
-
-        divBotones.append(button,botonFavoritos);
-        infoProductos.append(h2, p, divBotones);
-        divPadre.append(imgProducto,infoProductos);
-
-        contenedor.append(divPadre);
-
-
+        renderizarProductos(productosMayorPrecio);
     }
-}
+
+    function ordenarPorPrecioMayor(){
+        const productosMenorPrecio = productos.sort((productoA, productoB) => {
+            if(productoA.precio < productoB.precio){
+                return 1;
+            } else if (productoA.precio > productoB.precio){
+                return -1;
+            }
+
+            return 0;
+        });
+        renderizarProductos(productosMenorPrecio);
+    }
+
+    function inicializarSelect(){
+        const select = document.getElementById("selectOrden");
+
+        select.addEventListener("change", () => {
+            const value = select.value;
+            switch(value){
+
+                case "precioMayor":
+                    ordenarPorPrecioMayor();
+                    break;
+
+                case "precioMenor":
+                    ordenarPorPrecioMenor();
+                    break;
+            }
+        });
+    }
+
+    function inicializarInput(){
+        const form = document.getElementById("buscador");
+        const input = document.getElementById("inputBuscador");
+        
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+            const value = input.value;
+
+            const productosFiltrados = productos.filter((producto) => {
+                return producto
+                    .nombre
+                    .toLowerCase()
+                    .includes(value.toLowerCase());
+            });
+            renderizarProductos(productosFiltrados);
+        });
+    }
+
+    function renderizarProductos(arreglo){
+        const contenedor = document.getElementById("contenedor");
+        contenedor.innerHTML = "";
+
+        for(const producto of arreglo){
+
+            const divPadre = document.createElement("div");
+            divPadre.className = "products";
+
+            const imgProducto = document.createElement("img");
+            imgProducto.className = "img__products";
+            imgProducto.setAttribute("src", producto.imagen);
+            imgProducto.setAttribute("alt", producto.descripcionImagen);
+
+            const infoProductos = document.createElement("div");
+            infoProductos.className = "info__products";
+
+            const h2 = document.createElement("h2");
+            h2.className = "name__product";
+            h2.innerText = producto.nombre;
+
+            const p = document.createElement("p");
+            p.className = "price";
+            p.innerHTML = `<strong>$${producto.precio}</strong>`;
+
+            const divBotones = document.createElement("div");
+            divBotones.className = "div__botones";
+
+            const button = document.createElement("button");
+            button.className = "btn__product";
+            button.innerText = "VER PRODUCTO"       
+
+            const botonFavoritos = document.createElement("div");
+            botonFavoritos.className = "fa-solid fa-heart-circle-plus";
+
+            // Agregar a favoritos
+            botonFavoritos.addEventListener("click", () => {
+                const esFavorito = estaEnFavoritos(producto);
+                if (esFavorito) {
+                    Toastify({
+                        text: "Este producto ya está en favoritos",
+                        duration: 2000,
+                        gravity: "bottom",
+                        position: "left",
+                        className: "info",
+                        style: {
+                            background:  "linear-gradient(to right, #bf5959, #cb8f8f)",
+                        }
+                    }).showToast();
+                } else {
+                    guardarProductoEnLSFavoritos(producto);
+                    Toastify({
+                        text: "Agregado a favoritos",
+                        duration: 2000,
+                        gravity: "bottom",
+                        position: "left",
+                        className: "info",
+                        style: {
+                            background:  "linear-gradient(to right, #bf5959, #cb8f8f)",
+                        }
+                    }).showToast();
+                }
+            });
+
+            button.addEventListener("click", () =>{
+                renderProductoIndividual(producto);
+                mostrarProductoIndividual();
+            });
+            
+
+            divBotones.append(button,botonFavoritos);
+            infoProductos.append(h2, p, divBotones);
+            divPadre.append(imgProducto,infoProductos);
+
+            contenedor.append(divPadre);
+
+
+        }
+    }
+
+    function estaEnFavoritos(producto) {
+        let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+        return favoritos.some((favorito) => favorito.nombre === producto.nombre);
+    }
 
     function renderProductoIndividual(productoIndividual){
         const contenedor = document.getElementById("containerIndividual");
@@ -227,64 +295,59 @@ function renderizarProductos(arreglo){
         contenedor.style.display = "flex";
     }
 
-    function inicializarInput(){
-        const input = document.getElementById("buscarProductos");
-        
-        input.addEventListener("keyup", () => {
-            const value = input.value;
+    function renderizarCarrito(productosCarrito){
 
-            const productosFiltrados = productos.filter((producto) => {
-                return producto
-                    .nombre
-                    .toLowerCase()
-                    .includes(value.toLowerCase());
+        carritoLleno();
+
+        const tbody = document.querySelector("#carrito table tbody");
+        tbody.innerHTML = "";
+
+        mostrarSubtotal(productosCarrito);
+        mostrarIva(productosCarrito);
+        mostrarTotal(productosCarrito);
+        finalizarCompra(productosCarrito);
+
+        for (const productoCarrito of productosCarrito){
+
+            const tr = document.createElement("tr");
+
+            const tdImagen = document.createElement("td");
+
+            const tdImagenProducto = document.createElement("img");
+            tdImagenProducto.className = "imagen__carrito";
+            tdImagenProducto.setAttribute("src", productoCarrito.imagen);
+            tdImagenProducto.setAttribute("alt", productoCarrito.descripcionImagen);
+
+            const tdNombre = document.createElement("td");
+            tdNombre.innerText = productoCarrito.nombre;
+
+            const tdPrecio = document.createElement("td");
+            tdPrecio.innerText = `$${productoCarrito.precio}`;
+
+            const tdCantidad = document.createElement("td");
+            tdCantidad.innerText = `x${productoCarrito.cantidad}`;
+
+            const tdEliminar = document.createElement("td");
+
+            const botonEliminar = document.createElement("button");
+            botonEliminar.className = "fa-solid fa-trash-can";
+
+            botonEliminar.addEventListener("click", () => {
+                eliminarProducto(productoCarrito);
             });
-            renderizarProductos(productosFiltrados);
-        });
-    }
 
-    function ordenarPorPrecioMenor(){
-        const productosMayorPrecio = productos.sort((productoA, productoB) => {
-            if(productoA.precio > productoB.precio){
-                return 1;
-            } else if (productoA.precio < productoB.precio){
-                return -1;
-            }
 
-            return 0;
-        });
-        renderizarProductos(productosMayorPrecio);
-    }
+            tdImagen.append(tdImagenProducto);
+            tdEliminar.append(botonEliminar);
+            tr.append(tdImagen, tdNombre, tdPrecio, tdCantidad, tdEliminar);
 
-    function ordenarPorPrecioMayor(){
-        const productosMenorPrecio = productos.sort((productoA, productoB) => {
-            if(productoA.precio < productoB.precio){
-                return 1;
-            } else if (productoA.precio > productoB.precio){
-                return -1;
-            }
+            tbody.append(tr);
+        }
 
-            return 0;
-        });
-        renderizarProductos(productosMenorPrecio);
-    }
-
-    function inicializarSelect(){
-        const select = document.getElementById("selectOrden");
-
-        select.addEventListener("change", () => {
-            const value = select.value;
-            switch(value){
-
-                case "precioMayor":
-                    ordenarPorPrecioMayor();
-                    break;
-
-                case "precioMenor":
-                    ordenarPorPrecioMenor();
-                    break;
-            }
-        });
+        const contadorCarrito = document.getElementById("contadorCarrito");
+        contadorCarrito.innerText = productosCarrito.reduce((acc, producto) => acc + producto.cantidad, 0);
+        
+        carritoVacio();
     }
 
     function carritoVacio(){
@@ -310,35 +373,6 @@ function renderizarProductos(arreglo){
             lleno.classList.remove("d-none");
         }
     }
-
-    function favoritosVacio(){
-        let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
-        const vacio = document.getElementById("favoritosVacio");
-        vacio.className = "vacio";
-
-        if(favoritos.length > 0){
-            vacio.classList.add("d-none"); 
-
-        } else {
-            vacio.classList.remove("d-none");
-        }
-    }
-
-    function favoritosLleno(){
-        let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
-        const lleno = document.getElementById("favoritosLleno");
-        lleno.className = "lleno";
-        
-        if(favoritos.length <= 0){
-            lleno.classList.add("d-none");
-
-
-        } else {
-            lleno.classList.remove("d-none");
-        }
-    }
-
-    
 
     function calcularSubtotalCarrito(productosCarrito){
         const subtotal = productosCarrito.reduce((acc,producto) =>{
@@ -433,61 +467,25 @@ function renderizarProductos(arreglo){
             renderizarCarrito(carrito);
         });
     }
+
+    function eliminarProducto(producto) {
+
+        // Busco el producto a eliminar del carrito por el nombre
+        const indiceProductoAEliminar = carrito.findIndex( (el) => {
+            return producto.nombre === el.nombre;
+        });
     
-
-    function renderizarCarrito(productosCarrito){
-
-        carritoLleno();
-
-        const tbody = document.querySelector("#carrito table tbody");
-        tbody.innerHTML = "";
-
-        mostrarSubtotal(productosCarrito);
-        mostrarIva(productosCarrito);
-        mostrarTotal(productosCarrito);
-        finalizarCompra(productosCarrito);
-
-        for (const productoCarrito of productosCarrito){
-
-            const tr = document.createElement("tr");
-
-            const tdImagen = document.createElement("td");
-
-            const tdImagenProducto = document.createElement("img");
-            tdImagenProducto.className = "imagen__carrito";
-            tdImagenProducto.setAttribute("src", productoCarrito.imagen);
-            tdImagenProducto.setAttribute("alt", productoCarrito.descripcionImagen);
-
-            const tdNombre = document.createElement("td");
-            tdNombre.innerText = productoCarrito.nombre;
-
-            const tdPrecio = document.createElement("td");
-            tdPrecio.innerText = `$${productoCarrito.precio}`;
-
-            const tdCantidad = document.createElement("td");
-            tdCantidad.innerText = `x${productoCarrito.cantidad}`;
-
-            const tdEliminar = document.createElement("td");
-
-            const botonEliminar = document.createElement("button");
-            botonEliminar.className = "fa-solid fa-trash-can";
-
-            botonEliminar.addEventListener("click", () => {
-                eliminarProducto(productoCarrito);
-            });
-
-
-            tdImagen.append(tdImagenProducto);
-            tdEliminar.append(botonEliminar);
-            tr.append(tdImagen, tdNombre, tdPrecio, tdCantidad, tdEliminar);
-
-            tbody.append(tr);
+        // Si el índice del producto a eliminar existe
+        if(indiceProductoAEliminar !== -1) {
+    
+            // Elimino el producto del carrito
+            carrito.splice(indiceProductoAEliminar, 1);
+    
+            // Actualizo localStorage
+            localStorage.setItem("carrito", JSON.stringify(carrito));
+    
+            renderizarCarrito(carrito);
         }
-
-        const contadorCarrito = document.getElementById("contadorCarrito");
-        contadorCarrito.innerText = productosCarrito.reduce((acc, producto) => acc + producto.cantidad, 0);
-        
-        carritoVacio();
     }
 
     function renderizarFavoritos(productosFavoritos){
@@ -550,27 +548,34 @@ function renderizarProductos(arreglo){
 
             tbody.append(tr);
         }
-        
+
         favoritosVacio();
     }
 
-    function eliminarProducto(producto) {
+    function favoritosVacio(){
+        let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+        const vacio = document.getElementById("favoritosVacio");
+        vacio.className = "vacio";
 
-        // Busco el producto a eliminar del carrito por el nombre
-        const indiceProductoAEliminar = carrito.findIndex( (el) => {
-            return producto.nombre === el.nombre;
-        });
-    
-        // Si el índice del producto a eliminar existe
-        if(indiceProductoAEliminar !== -1) {
-    
-            // Elimino el producto del carrito
-            carrito.splice(indiceProductoAEliminar, 1);
-    
-            // Actualizo localStorage
-            localStorage.setItem("carrito", JSON.stringify(carrito));
-    
-            renderizarCarrito(carrito);
+        if(favoritos.length > 0){
+            vacio.classList.add("d-none"); 
+
+        } else {
+            vacio.classList.remove("d-none");
+        }
+    }
+
+    function favoritosLleno(){
+        let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+        const lleno = document.getElementById("favoritosLleno");
+        lleno.className = "lleno";
+        
+        if(favoritos.length <= 0){
+            lleno.classList.add("d-none");
+
+
+        } else {
+            lleno.classList.remove("d-none");
         }
     }
 
