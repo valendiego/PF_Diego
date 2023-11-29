@@ -151,23 +151,20 @@
     margin-left:20px;
   }
 
-.bi-suit-heart,
- .bi-suit-heart-fill{
+.fa-heart-circle-plus{
     font-size: 1.4rem;
     background: #fff;
-    // float: right;
     color: $primarioOscuro;
     border: 1px solid $primarioOscuro;
-    padding: 5px 10px;
-    border-radius: 100%;
+    padding: 10px 10px;
     cursor: pointer;
     margin: 10px;
     transition: all .42s ease;
   }
 
-  .bi-suit-heart:hover,
-  .bi-suit-heart-fill:hover{
-    transform: scale(1.1);
+  .fa-heart-circle-plus:hover{
+    background-color: $primarioOscuro;
+    color:#fff;
   }
 
 /*TORTAS/PASTISSERIE/BRUNCH/NOVEDADES*/

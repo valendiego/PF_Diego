@@ -16,9 +16,19 @@
     overflow-y: auto;
   }
 
-
-  .fa-trash-can,
   .bi-bag-plus-fill{
+    font-size: 1.5rem;
+    color: $primarioOscuro;
+    border: none;
+    background-color: transparent;
+    transition: all .42s ease;
+  }
+
+  .bi-bag-plus-fill:hover{
+    transform: scale(1.2);
+  }
+
+  .fa-trash-can{
     font-size: 1.5rem;
     color: #fff;
     background-color: $primarioOscuro;
@@ -28,8 +38,7 @@
     transition: all .42s ease;
   }
 
-  .fa-trash-can:hover,
-  .bi-bag-plus-fill:hover{
+  .fa-trash-can:hover{
     color: $primarioOscuro;
     background-color: #fff;
     border: 1px solid $primarioOscuro;

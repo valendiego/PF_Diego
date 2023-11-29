@@ -56,21 +56,27 @@ function renderizarProductos(arreglo){
         button.innerText = "COMPRAR"       
 
         const botonFavoritos = document.createElement("div");
-        botonFavoritos.className = producto.favorito ? "bi-suit-heart-fill" : "bi-suit-heart";
-        botonFavoritos.setAttribute("data-nombre", producto.nombre);
+        botonFavoritos.className = "fa-solid fa-heart-circle-plus";
 
         // Agregar a favoritos
         botonFavoritos.addEventListener("click", () => {
-            if (producto.favorito) {
-                eliminarProductoFavoritos(producto);
+            if (producto.favorito === true) {
+                Toastify({
+                    text: "Este producto ya está en favoritos",
+                    duration: 2000,
+                    gravity: "bottom",
+                    position: "left",
+                    className: "info",
+                    style: {
+                        background:  "linear-gradient(to right, #bf5959, #cb8f8f)",
+                    }
+                }).showToast();
             } else {
                 guardarProductoEnLSFavoritos(producto);
             }
-            producto.favorito = !producto.favorito; // Alternar estado de favorito
-            cambiarClasesCorazon(botonFavoritos, producto.favorito);
 
             Toastify({
-                text: producto.favorito ? "Agregado a favoritos" : "Eliminado de favoritos",
+                text: "Agregado a favoritos",
                 duration: 2000,
                 gravity: "bottom",
                 position: "left",
@@ -508,6 +514,11 @@ function renderizarProductos(arreglo){
             const tdPrecio = document.createElement("td");
             tdPrecio.innerText = `$${productoFavoritos.precio}`;
 
+            const tdEliminar = document.createElement("td");
+
+            const botonEliminar = document.createElement("button");
+            botonEliminar.className = "fa-solid fa-trash-can";
+
             const tdVerProducto = document.createElement("td");
 
             const botonVerProducto = document.createElement("button");
@@ -518,40 +529,30 @@ function renderizarProductos(arreglo){
                 mostrarProductoIndividual();
             });
 
-            document.addEventListener('DOMContentLoaded', () => {
-                const favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
-            
-                favoritos.forEach((productoFavorito) => {
-                    const botonFavoritos = document.querySelector(`[data-nombre="${productoFavorito.nombre}"]`);
-            
-                    if (botonFavoritos) {
-                        cambiarClasesCorazon(botonFavoritos, true);
+            botonEliminar.addEventListener("click", () =>{
+                eliminarProductoFavoritos(productoFavoritos);
+                Toastify({
+                    text: "Eliminado de favoritos",
+                    duration: 2000,
+                    gravity: "bottom",
+                    position: "left",
+                    className: "info",
+                    style: {
+                        background:  "linear-gradient(to right, #bf5959, #cb8f8f)",
                     }
-                });
+                }).showToast();
             });
 
             tdImagen.append(tdImagenProducto);
             tdVerProducto.append(botonVerProducto);
-            tr.append(tdImagen, tdNombre, tdPrecio, tdVerProducto);
+            tdEliminar.append(botonEliminar);
+            tr.append(tdImagen, tdNombre, tdPrecio, tdVerProducto, tdEliminar);
 
             tbody.append(tr);
         }
         
         favoritosVacio();
     }
-    
-    function cambiarClasesCorazon(botonFavoritos, enFavoritos) {
-        if (botonFavoritos) {
-            if (enFavoritos) {
-                botonFavoritos.classList.remove("bi-suit-heart");
-                botonFavoritos.classList.add("bi-suit-heart-fill");
-            } else {
-                botonFavoritos.classList.remove("bi-suit-heart-fill");
-                botonFavoritos.classList.add("bi-suit-heart");
-            }
-        }
-    }
-
 
     function eliminarProducto(producto) {
 
