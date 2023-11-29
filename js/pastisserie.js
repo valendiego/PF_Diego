@@ -1,12 +1,11 @@
 //FUNCIONES
 //Clase constructora de los productos
 class Producto {
-    constructor(nombre, precio, imagen, descripcionImagen, favorito, descripcion) {
+    constructor(nombre, precio, imagen, descripcionImagen, descripcion) {
         this.nombre = nombre;
         this.precio = precio;
         this.imagen = imagen;
         this.descripcionImagen = descripcionImagen;
-        this.favorito = favorito;
         this.descripcion = descripcion;
     }
 }

@@ -1,16 +1,16 @@
 //FUNCIONES
 //Clase constructora de los productos
     class Producto {
-        constructor(nombre, precio, imagen, descripcionImagen, favorito, descripcion) {
+        constructor(nombre, precio, imagen, descripcionImagen, descripcion) {
             this.nombre = nombre;
             this.precio = precio;
             this.imagen = imagen;
             this.descripcionImagen = descripcionImagen;
-            this.favorito = favorito;
             this.descripcion = descripcion;
         }
     }
 
+//Obtener productos de JSON
     function obtenerProductosDeJSON() {
     return new Promise((resolve, reject) => {
         fetch('../brunch.json').then((response) => {
@@ -24,6 +24,7 @@
     });
     }
 
+//Filtros y búsquedas
     function ordenarPorPrecioMenor(){
         const productosMayorPrecio = productos.sort((productoA, productoB) => {
             if(productoA.precio > productoB.precio){
@@ -86,6 +87,7 @@
         });
     }
 
+//Renderizado de todos los productos
     function renderizarProductos(arreglo){
         const contenedor = document.getElementById("contenedor");
         contenedor.innerHTML = "";
@@ -171,6 +173,7 @@
         return favoritos.some((favorito) => favorito.nombre === producto.nombre);
     }
 
+//Renderizado del producto individual
     function renderProductoIndividual(productoIndividual){
         const contenedor = document.getElementById("containerIndividual");
         contenedor.innerHTML = "";
@@ -295,6 +298,7 @@
         contenedor.style.display = "flex";
     }
 
+//Renderizado del carrito
     function renderizarCarrito(productosCarrito){
 
         carritoLleno();
@@ -488,6 +492,7 @@
         }
     }
 
+//Renderizado de favoritos
     function renderizarFavoritos(productosFavoritos){
 
         favoritosLleno();
@@ -599,20 +604,13 @@
         }
     }
     
+//Obtener y guardar productos en LS para el carrito
     function obtenerProductosEnLS() {
 
         carrito = JSON.parse(localStorage.getItem("carrito"));
 
         if(carrito) {
             renderizarCarrito(carrito);
-        }
-    }
-
-    function obtenerProductosEnLSFavoritos(){
-        favoritos = JSON.parse(localStorage.getItem("favoritos"));
-
-        if(favoritos) {
-            renderizarFavoritos(favoritos);
         }
     }
 
@@ -654,6 +652,15 @@
     
     }
 
+//Obtener y guardar productos en LS para favoritos
+    function obtenerProductosEnLSFavoritos(){
+        favoritos = JSON.parse(localStorage.getItem("favoritos"));
+
+        if(favoritos) {
+            renderizarFavoritos(favoritos);
+        }
+    }
+
     function guardarProductoEnLSFavoritos(producto) {
         let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
 
@@ -691,12 +698,13 @@
     
     }
 
+//VARIABLES
     const productos = [];
     
     let carrito = [];
     let favoritos = [];
 
-
+//INICIO DEL PROGRAMA
     inicializarInput();
     inicializarSelect();
     obtenerProductosEnLS();

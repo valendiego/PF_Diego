@@ -4,7 +4,6 @@
         1100,
         "../resources/tostado2.jpg",
         "Tostado Árabe",
-        false,
         "Tostado de pan árabe con jamón, queso y tomate."
     ],
     [
@@ -12,7 +11,6 @@
         1350,
         "../resources/tostado1.jpg",
         "Sándwich Capresse",
-        false,
         "Sándwich de pan lactal con queso, tomate, albahaca y ajo."
     ],
     [
@@ -20,7 +18,6 @@
         1550,
         "../resources/croissant-jc1.jpg",
         "Sándwich Ibérico",
-        false,
         "Sándwich de figazza con jamón crudo, queso brie y tomates asados."
     ],
     [
@@ -28,7 +25,6 @@
         1100,
         "../resources/sanguche.jpg",
         "Sándwich Veggie",
-        false,
         "Sándwich vegetariano de figazza con queso, tomate, palta, berenjenas y ajo."
     ],
     [
@@ -36,7 +32,6 @@
         1600,
         "../resources/sanguche1.jpg",
         "Sándwich Roast Beef",
-        false,
         "Sándwich de figazza con carne roast beef, queso, tomate y cebolla caramelizada."
     ],
     [
@@ -44,7 +39,6 @@
         1550,
         "../resources/croissant-jc.jpg",
         "Croissant Ibérica",
-        false,
         "Croissant rellena de jamón crudo, rúcula y queso brie."
     ]
 ]
