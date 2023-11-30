@@ -94,8 +94,23 @@
   border: 1px solid $primarioOscuro;
 }
 
-#contadorCarrito,
-#contadorFavoritos{
+.vaciar__carrito{
+  border: none;
+  background-color: transparent;
+  color: #77777794;
+  cursor: pointer;
+  margin: 15px;
+  font-size: 0.9rem;
+  transition: all .42s ease;
+  font-weight: bold;
+  text-decoration:underline;
+}
+
+.vaciar__carrito:hover{
+  transform: scale(1.1);
+}
+
+#contadorCarrito{
   width: 100%;
   height: 100%;
   font-size: 0.9rem;

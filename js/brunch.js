@@ -306,6 +306,7 @@
         const tbody = document.querySelector("#carrito table tbody");
         tbody.innerHTML = "";
 
+        vaciarCarrito();
         mostrarSubtotal(productosCarrito);
         mostrarIva(productosCarrito);
         mostrarTotal(productosCarrito);
@@ -350,7 +351,7 @@
 
         const contadorCarrito = document.getElementById("contadorCarrito");
         contadorCarrito.innerText = productosCarrito.reduce((acc, producto) => acc + producto.cantidad, 0);
-        
+
         carritoVacio();
     }
 
@@ -376,6 +377,24 @@
         } else {
             lleno.classList.remove("d-none");
         }
+    }
+
+    function vaciarCarrito(){
+        const vaciar = document.getElementById("vaciarCarrito");
+        vaciar.className = "vaciar__carrito";
+
+        if(carrito.length <= 0){
+            vaciar.classList.add("d-none");
+
+
+        } else {
+            vaciar.classList.remove("d-none");
+        }
+        vaciar.addEventListener("click", () =>{
+            carrito = [];
+            localStorage.setItem("carrito", JSON.stringify(carrito));
+            renderizarCarrito(carrito);
+        });
     }
 
     function calcularSubtotalCarrito(productosCarrito){
